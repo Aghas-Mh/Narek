@@ -1,0 +1,64 @@
+{%- from "partials/icons.njk" import icon -%}
+{%- macro copyButton(value, label) -%}
+<button class="copy" type="button" data-copy="{{ value }}" data-done="{{ t.donate.copied }}" data-fail="{{ t.donate.copyFailed }}" aria-label="{{ t.donate.copy }}: {{ label }}">
+  {{ icon("copy") }}<span data-label>{{ t.donate.copy }}</span>
+</button>
+{%- endmacro -%}
+<section class="section section--donate" id="donate" aria-labelledby="donate-title">
+  <div class="wrap">
+    <div class="donate__head">
+      <h2 id="donate-title">{{ t.donate.title }}</h2>
+      <p class="lead">{{ t.donate.intro }}</p>
+      <p class="recipient">
+        {{ t.donate.recipientLabel }}: <strong>{{ t.donate.recipientName }}</strong>
+        <span class="recipient__relation">({% fill t.donate.recipientRelation %})</span>
+      </p>
+    </div>
+
+    <div class="pay-grid">
+      {% for m in campaign.payments %}
+      {%- set mt = t.donate.methods[m.id] -%}
+      <article class="pay pay--{{ m.type }}" id="pay-{{ m.id }}">
+        <header class="pay__head">
+          <h3>{{ mt.title }}</h3>
+          <span class="pay__currency">{{ m.currency }}</span>
+        </header>
+
+        {% if m.type == "swift" %}
+        <dl class="pay__fields">
+          {% for key in ["beneficiary", "account", "bank", "swift", "bankAddress", "purpose"] %}
+          <div>
+            <dt>{{ t.donate.swiftFields[key] }}</dt>
+            <dd>
+              {% if m[key] | isTodo %}{% fill m[key] %}
+              {% else %}<span class="pay__value">{{ m[key] }}</span>{% if key in ["account", "swift", "beneficiary"] %} {{ copyButton(m[key], t.donate.swiftFields[key]) }}{% endif %}
+              {% endif %}
+            </dd>
+          </div>
+          {% endfor %}
+        </dl>
+        {% else %}
+        <p class="pay__label">{{ t.donate.cardNumber if m.type == "card" else t.donate.walletNumber }}</p>
+        <div class="pay__number">
+          <span class="pay__digits">{{ (m.number | groupDigits) if m.type == "card" else m.number }}</span>
+          {{ copyButton(m.number, mt.title) }}
+        </div>
+        {% if m.bank is defined %}
+        <p class="pay__bank">{{ t.donate.bank }}: {% fill m.bank %}</p>
+        {% endif %}
+        {% endif %}
+
+        {% if mt.hint %}<p class="pay__hint">{{ mt.hint }}</p>{% endif %}
+      </article>
+      {% endfor %}
+
+      <div class="after-donate">
+        {{ icon("heart") }}
+        <div>
+          <h3>{{ t.donate.afterTitle }}</h3>
+          <p>{{ t.donate.after }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

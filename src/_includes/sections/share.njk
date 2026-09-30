@@ -1,0 +1,46 @@
+{%- from "partials/icons.njk" import icon -%}
+{%- set shareText = t.share.message | interp(vars) -%}
+{%- set shareUrl = page.url | absUrl(site.url) -%}
+{%- set links = shareUrl | shareLinks(shareText) -%}
+<section class="section" id="share" aria-labelledby="share-title">
+  <div class="wrap two-col two-col--top">
+    <div>
+      <h2 id="share-title">{{ t.share.title }}</h2>
+      <p class="lead">{{ t.share.text }}</p>
+
+      <div class="share" data-share data-share-text="{{ shareText }}" data-share-title="{{ t.meta.title }}">
+        <button class="btn btn--primary share__native" type="button" data-native-share hidden>{{ icon("share") }} {{ t.share.native }}</button>
+        <div class="share__list">
+          <a class="share__btn share__btn--whatsapp" data-network="whatsapp" href="{{ links.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="share__btn share__btn--telegram" data-network="telegram" href="{{ links.telegram }}" target="_blank" rel="noopener">Telegram</a>
+          <a class="share__btn share__btn--viber" data-network="viber" href="{{ links.viber }}">Viber</a>
+          <a class="share__btn share__btn--facebook" data-network="facebook" href="{{ links.facebook }}" target="_blank" rel="noopener">Facebook</a>
+          <a class="share__btn share__btn--vk" data-network="vk" href="{{ links.vk }}" target="_blank" rel="noopener">VK</a>
+          <a class="share__btn share__btn--x" data-network="x" href="{{ links.x }}" target="_blank" rel="noopener">X</a>
+          <a class="share__btn share__btn--email" data-network="email" href="{{ links.email }}">{{ t.share.email }}</a>
+          <button class="share__btn share__btn--link" type="button" data-copy="{{ shareUrl }}" data-copy-page data-done="{{ t.share.copied }}" data-fail="{{ t.donate.copyFailed }}">
+            {{ icon("link") }}<span data-label>{{ t.share.copyLink }}</span>
+          </button>
+        </div>
+      </div>
+
+      <a class="poster" href="/assets/img/poster.jpg" download="help-narek-poster.jpg">
+        <img src="/assets/img/poster-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="640" loading="lazy">
+        <span class="poster__label">{{ icon("download") }} {{ t.share.poster }}</span>
+      </a>
+    </div>
+
+    <div class="panel contact" id="contact">
+      <h2>{{ t.contact.title }}</h2>
+      <p>{{ t.contact.text }}</p>
+      <dl class="contact__list">
+        {% for kind, value in campaign.contacts %}
+        <div>
+          <dt>{{ t.contact.labels[kind] }}</dt>
+          <dd>{% if value | isTodo %}{% fill value %}{% else %}<a href="{{ value | contactHref(kind) }}"{% if not (kind in ["phone", "email"]) %} target="_blank" rel="noopener"{% endif %}>{{ value }}</a>{% endif %}</dd>
+        </div>
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+</section>

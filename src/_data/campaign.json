@@ -1,0 +1,64 @@
+{
+  "child": {
+    "birthDate": "2017-03-27"
+  },
+
+  "goal": {
+    "amount": 270000000,
+    "currency": "RUB",
+    "approx": [
+      { "currency": "USD", "amount": 3300000 }
+    ]
+  },
+
+  "raised": {
+    "amount": 12500000,
+    "updated": "2026-09-30"
+  },
+
+  "treatment": {
+    "targetDate": "2026-10-30"
+  },
+
+  "costs": {
+    "source": "TODO: which document these amounts come from, e.g. Medcare cost estimate no. …, dated …",
+    "items": [
+      { "id": "medicine", "amount": "TODO: amount in RUB" },
+      { "id": "hospital", "amount": "TODO: amount in RUB" },
+      { "id": "travel", "amount": "TODO: amount in RUB" },
+      { "id": "followup", "amount": "TODO: amount in RUB" }
+    ]
+  },
+
+  "payments": [
+    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "bank": "TODO: bank name" },
+    { "id": "idram", "type": "wallet", "currency": "AMD", "number": "29437820" },
+    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "bank": "TODO: bank name" },
+    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "bank": "TODO: bank name" },
+    { "id": "rub", "type": "card", "currency": "RUB", "number": "2200151392856287", "bank": "Alfa-Bank" },
+    {
+      "id": "swift",
+      "type": "swift",
+      "currency": "USD · EUR",
+      "beneficiary": "TODO: account holder's name exactly as the bank writes it",
+      "account": "TODO: account number or IBAN",
+      "bank": "TODO: bank name",
+      "swift": "TODO: SWIFT / BIC code",
+      "bankAddress": "TODO: bank address",
+      "purpose": "TODO: text donors should write as the payment purpose, e.g. Gift for Narek Grigoryan's medical treatment"
+    }
+  ],
+
+  "contacts": {
+    "phone": "+374 94 577976",
+    "whatsapp": "+374 94 577976",
+    "telegram": "TODO: Telegram username, without @",
+    "email": "TODO: email address",
+    "instagram": "TODO: Instagram username (optional — delete this line if not used)",
+    "facebook": "TODO: full link to a Facebook page (optional — delete this line if not used)"
+  },
+
+  "video": "TODO: YouTube video ID of a short message from the family, e.g. dQw4w9WgXcQ (optional)",
+
+  "photos": []
+}

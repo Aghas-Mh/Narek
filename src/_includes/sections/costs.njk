@@ -1,0 +1,25 @@
+<section class="section section--alt" id="costs" aria-labelledby="costs-title">
+  <div class="wrap narrow">
+    <h2 id="costs-title">{{ t.costs.title }}</h2>
+    <p class="lead">{{ t.costs.intro | interp(vars) }}</p>
+
+    <table class="costs">
+      <tbody>
+        {% for item in campaign.costs.items %}
+        <tr>
+          <th scope="row">{{ t.costs.items[item.id] }}</th>
+          <td>{% if item.amount | isTodo %}{% fill item.amount %}{% else %}{{ item.amount | money(campaign.goal.currency, lang.locale) }}{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row">{{ t.costs.total }}</th>
+          <td>{{ vars.goal }}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p class="small muted">{{ t.costs.sourceLabel }}: {% fill campaign.costs.source %}</p>
+  </div>
+</section>

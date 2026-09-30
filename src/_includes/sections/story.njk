@@ -1,0 +1,45 @@
+{%- from "partials/icons.njk" import icon -%}
+<section class="section" id="story" aria-labelledby="story-title">
+  <div class="wrap story">
+    <div class="prose">
+      <h2 id="story-title">{{ t.story.title }}</h2>
+      {% for p in t.story.paragraphs %}
+      <p>{{ p | interp(vars) }}</p>
+      {% endfor %}
+      <h3>{{ t.story.todayTitle }}</h3>
+      <p>{% fill t.story.today %}</p>
+    </div>
+
+    <aside class="quote" aria-label="{{ t.story.parentsTitle }}">
+      <p class="quote__title">{{ t.story.parentsTitle }}</p>
+      <blockquote>
+        <p>{% fill t.story.parentsMessage %}</p>
+      </blockquote>
+      <p class="quote__by">— {% fill t.story.parentsSignature %}</p>
+    </aside>
+  </div>
+
+  <div class="wrap">
+    <h3 class="media__title">{{ t.story.mediaTitle }}</h3>
+    <div class="media">
+      {% if campaign.video | isTodo %}
+      <div class="placeholder media__video">{{ icon("play") }}<span>{{ t.story.videoPlaceholder }}</span></div>
+      {% else %}
+      <div class="media__video">
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ campaign.video }}" title="{{ t.story.videoTitle }}" loading="lazy"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+      {% endif %}
+
+      {% for ph in campaign.photos %}
+      <figure class="media__photo">
+        <img src="{{ ph.src }}" alt="{{ ph.alt[lang.code] or ph.alt.en }}" loading="lazy">
+      </figure>
+      {% else %}
+        {% for i in range(0, 3) %}
+        <div class="placeholder media__photo">{{ icon("image") }}<span>{{ t.story.photoPlaceholder }}</span></div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

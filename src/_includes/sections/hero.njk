@@ -1,0 +1,28 @@
+{%- from "partials/icons.njk" import icon -%}
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">{{ t.hero.eyebrow }}</p>
+      <h1 class="hero__title">{{ t.hero.title }}</h1>
+      <p class="lead">{{ t.hero.lead | interp(vars) }}</p>
+
+      {% include "partials/progress.njk" %}
+
+      <div class="actions">
+        <a class="btn btn--primary btn--lg" href="#donate">{{ icon("heart") }} {{ t.hero.donate }}</a>
+        <a class="btn btn--ghost btn--lg" href="#share">{{ icon("share") }} {{ t.hero.share }}</a>
+      </div>
+    </div>
+
+    <figure class="hero__photo">
+      <img
+        src="/assets/img/narek-900.jpg"
+        srcset="/assets/img/narek-600.jpg 600w, /assets/img/narek-900.jpg 900w"
+        sizes="(min-width: 960px) 440px, 88vw"
+        width="900" height="1240"
+        alt="{{ t.hero.photoAlt }}"
+        fetchpriority="high">
+      <figcaption>{{ t.hero.photoCaption | interp(vars) }}</figcaption>
+    </figure>
+  </div>
+</section>

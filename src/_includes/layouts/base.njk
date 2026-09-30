@@ -1,0 +1,57 @@
+{%- from "partials/icons.njk" import icon -%}
+<!doctype html>
+<html lang="{{ lang.code }}">
+<head>
+  {% include "partials/head.njk" %}
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">{{ t.nav.skip }}</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="/{{ lang.code }}/">{{ icon("heart", "brand__icon") }}<span>{{ t.meta.siteName }}</span></a>
+      <nav class="site-nav" aria-label="{{ t.nav.label }}">
+        <a href="/{{ lang.code }}/#story">{{ t.nav.story }}</a>
+        <a href="/{{ lang.code }}/#treatment">{{ t.nav.treatment }}</a>
+        <a href="/{{ lang.code }}/#documents">{{ t.nav.documents }}</a>
+      </nav>
+      {% include "partials/language-switch.njk" %}
+      <a class="btn btn--primary btn--sm" href="/{{ lang.code }}/#donate">{{ t.nav.donate }}</a>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div>
+        <p class="site-footer__brand">{{ icon("heart", "brand__icon") }} {{ t.meta.siteName }}</p>
+        <p>{{ t.footer.note }}</p>
+        <p>{{ t.footer.organizerLabel }}: {% fill t.footer.organizer %}</p>
+      </div>
+      <div class="site-footer__meta">
+        {% include "partials/language-switch.njk" %}
+        <p>{{ t.footer.updated | interp({ date: vars.buildDate }) }}</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-donate" data-sticky-donate>
+    <a class="btn btn--primary btn--block" href="/{{ lang.code }}/#donate">{{ icon("heart") }} {{ t.stickyDonate }}</a>
+  </div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="{{ t.documents.title }}">
+    <div class="lightbox__bar">
+      <p class="lightbox__caption"></p>
+      <a class="lightbox__open" href="#" target="_blank" rel="noopener">{{ t.documents.open }}</a>
+      <button class="lightbox__close" type="button" data-close aria-label="{{ t.documents.close }}">{{ icon("close") }}</button>
+    </div>
+    <img class="lightbox__img" src="data:," alt="">
+  </dialog>
+
+  <p class="visually-hidden" aria-live="polite" data-live></p>
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+permalink: /404.html
+layout: layouts/base.njk
+robots: noindex
+---
+<section class="section not-found">
+  <div class="wrap narrow">
+    <h1>{{ t.notFound.title }}</h1>
+    <p class="lead">{{ t.notFound.text }}</p>
+    <p><a class="btn btn--primary" href="/{{ lang.code }}/">{{ t.notFound.back }}</a></p>
+  </div>
+</section>

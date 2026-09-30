@@ -1,0 +1,26 @@
+[
+  {
+    "date": "TODO: date the fundraiser started, YYYY-MM-DD",
+    "text": {
+      "en": "TODO: e.g. We started raising money for Narek's treatment."
+    }
+  },
+  {
+    "date": "2026-08-17",
+    "text": {
+      "en": "Medcare Royal Speciality Hospital in Dubai confirmed that Narek is eligible for Elevidys gene therapy."
+    }
+  },
+  {
+    "date": "2024-04-17",
+    "text": {
+      "en": "Specialists at the Children's Neuromuscular Centre in Moscow confirmed the diagnosis: Duchenne muscular dystrophy."
+    }
+  },
+  {
+    "date": "2024-04-15",
+    "text": {
+      "en": "A genetic test in Moscow found the deletion in the DMD gene that causes Duchenne. Narek started daily steroid treatment the same day."
+    }
+  }
+]

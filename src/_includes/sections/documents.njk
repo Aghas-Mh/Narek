@@ -1,0 +1,38 @@
+{%- from "partials/icons.njk" import icon -%}
+<section class="section section--alt" id="documents" aria-labelledby="documents-title">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 id="documents-title">{{ t.documents.title }}</h2>
+      <p class="lead">{{ t.documents.intro }}</p>
+    </div>
+
+    <ul class="docs">
+      {% for d in documents %}
+      {%- set dt = t.documents.items[d.id] -%}
+      <li class="doc" id="doc-{{ d.id }}">
+        {% if d.image | isTodo %}
+        <div class="doc__thumb placeholder">{{ icon("file") }}<span>{% fill d.image %}</span></div>
+        {% else %}
+        <a class="doc__thumb" href="{{ d.image }}" data-lightbox data-caption="{{ dt.title }} · {{ dt.source }}">
+          <img src="{{ d.thumb or d.image }}" alt="{{ dt.title }}, {{ dt.source }}" loading="lazy" width="360" height="480">
+        </a>
+        {% endif %}
+        <div class="doc__body">
+          <h3>{{ dt.title }}</h3>
+          <p class="doc__meta">
+            {{ dt.source }}<br>
+            {% if d.date | isTodo %}{% fill d.date %}{% else %}{{ d.date | formatDate(lang.locale) }}{% endif %} · {{ dt.language }}
+          </p>
+          <p>{% fill dt.summary %}</p>
+          {% if not (d.image | isTodo) %}
+          <p class="doc__links">
+            <a href="{{ d.image }}" data-lightbox data-caption="{{ dt.title }} · {{ dt.source }}">{{ icon("file") }} {{ t.documents.open }}</a>
+            {% if d.pdf %}<a href="{{ d.pdf }}" download>{{ icon("download") }} {{ t.documents.download }}</a>{% endif %}
+          </p>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

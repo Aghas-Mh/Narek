@@ -1,0 +1,24 @@
+{%- from "partials/icons.njk" import icon -%}
+<section class="section section--alt" id="duchenne" aria-labelledby="dmd-title">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2 id="dmd-title">{{ t.dmd.title }}</h2>
+      {% for p in t.dmd.paragraphs %}
+      <p>{{ p }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="panel">
+      <h3 class="panel__title">{{ t.dmd.timelineTitle }}</h3>
+      <ol class="timeline">
+        {% for s in t.dmd.timeline %}
+        <li class="timeline__step{% if loop.index0 == vars.stage %} is-current{% elif loop.index0 < vars.stage %} is-past{% endif %}">
+          <span class="timeline__age">{{ s.age }}</span>
+          <span class="timeline__text">{{ s.text }}</span>
+          {% if loop.index0 == vars.stage %}<span class="timeline__here">{{ t.dmd.youAreHere }}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>

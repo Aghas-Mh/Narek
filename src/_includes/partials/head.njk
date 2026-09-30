@@ -1,0 +1,30 @@
+{%- set description = t.meta.description | interp(vars) -%}
+{%- set canonicalUrl = (canonical or page.url) | absUrl(site.url) -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title or t.meta.title }} · {{ t.meta.siteName }}</title>
+<meta name="description" content="{{ description }}">
+{% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
+<link rel="canonical" href="{{ canonicalUrl }}">
+{% for l in languages -%}
+<link rel="alternate" hreflang="{{ l.code }}" href="{{ ('/' + l.code + '/') | absUrl(site.url) }}">
+{% endfor -%}
+<link rel="alternate" hreflang="x-default" href="{{ '/' | absUrl(site.url) }}">
+
+{# Social previews (WhatsApp, Telegram, Facebook, Viber, VK…) #}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ t.meta.siteName }}">
+<meta property="og:title" content="{{ t.meta.title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonicalUrl }}">
+<meta property="og:image" content="{{ lang.code | ogImage | absUrl(site.url) }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ t.meta.title }}">
+<meta property="og:locale" content="{{ lang.locale | replace('-', '_') }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#14213d">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">

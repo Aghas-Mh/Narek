@@ -1,0 +1,20 @@
+---
+# One page per enabled language: /en/, /hy/, /ru/ (see src/_data/languages.js)
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+permalink: "/{{ lang.code }}/"
+layout: layouts/base.njk
+---
+{% include "sections/hero.njk" %}
+{% include "sections/facts.njk" %}
+{% include "sections/story.njk" %}
+{% include "sections/duchenne.njk" %}
+{% include "sections/treatment.njk" %}
+{% include "sections/costs.njk" %}
+{% include "sections/donate.njk" %}
+{% include "sections/documents.njk" %}
+{% include "sections/news.njk" %}
+{% include "sections/faq.njk" %}
+{% include "sections/share.njk" %}

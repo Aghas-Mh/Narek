@@ -1,0 +1,23 @@
+{%- set goal = campaign.goal -%}
+{%- set raised = campaign.raised -%}
+{%- set pct = raised.amount | percent(goal.amount) -%}
+<div class="progress-card">
+  <p class="progress-card__label">{{ t.progress.raised }}</p>
+  <p class="progress-card__amount">
+    {% if raised.amount | isTodo %}{% fill raised.amount %}{% else %}{{ raised.amount | money(goal.currency, lang.locale) }}{% endif %}
+  </p>
+  <div class="bar" role="progressbar" aria-label="{{ t.progress.raised }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}">
+    <span class="bar__fill" style="width: {{ pct }}%"></span>
+  </div>
+  <p class="progress-card__meta">
+    {% if not (raised.amount | isTodo) %}<strong>{{ pct | percentLabel(lang.locale) }}</strong>{% endif %}
+    {{ t.progress.ofGoal | interp(vars) }}
+    {%- for a in goal.approx %}
+      {%- if a.amount | isTodo %} (≈ {% fill a.amount %})
+      {%- else %} <span class="nowrap">(≈ {{ a.amount | money(a.currency, lang.locale) }})</span>{% endif %}
+    {%- endfor %}
+  </p>
+  <p class="progress-card__updated">
+    {% if raised.updated | isTodo %}{% fill raised.updated %}{% else %}{% set updatedOn = raised.updated | formatDate(lang.locale) %}{{ t.progress.updated | interp({ date: updatedOn }) }}{% endif %}
+  </p>
+</div>

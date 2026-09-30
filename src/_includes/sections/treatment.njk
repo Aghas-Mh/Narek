@@ -1,0 +1,37 @@
+{%- from "partials/icons.njk" import icon -%}
+<section class="section" id="treatment" aria-labelledby="treatment-title">
+  <div class="wrap">
+    <div class="prose">
+      <h2 id="treatment-title">{{ t.treatment.title }}</h2>
+      {% for p in t.treatment.paragraphs %}
+      <p>{{ p }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="cards">
+      <article class="card card--green">
+        <span class="card__icon">{{ icon("check-circle") }}</span>
+        <h3>{{ t.treatment.eligibilityTitle }}</h3>
+        <p>{{ t.treatment.eligibility }}</p>
+        <p><a class="link-arrow" href="#doc-medcare">{{ t.treatment.seeLetter }} {{ icon("arrow-right") }}</a></p>
+      </article>
+
+      <article class="card card--amber">
+        <span class="card__icon">{{ icon("clock") }}</span>
+        <h3>{{ t.treatment.whyNowTitle }}</h3>
+        <p>{{ t.treatment.whyNow }}</p>
+        {% if campaign.treatment.targetDate is defined %}
+        <p class="card__meta">{{ t.treatment.dateLabel }}:
+          {% if campaign.treatment.targetDate | isTodo %}{% fill campaign.treatment.targetDate %}{% else %}<strong>{{ campaign.treatment.targetDate | formatDate(lang.locale) }}</strong>{% endif %}
+        </p>
+        {% endif %}
+      </article>
+
+      <article class="card card--navy">
+        <span class="card__icon">{{ icon("info") }}</span>
+        <h3>{{ t.treatment.honestTitle }}</h3>
+        <p>{{ t.treatment.honest }}</p>
+      </article>
+    </div>
+  </div>
+</section>

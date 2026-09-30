@@ -1,0 +1,15 @@
+<section class="section section--alt" id="faq" aria-labelledby="faq-title">
+  <div class="wrap narrow">
+    <h2 id="faq-title">{{ t.faq.title }}</h2>
+    <div class="faq">
+      {% for item in t.faq.items %}
+      <details class="faq__item">
+        <summary>{{ item.q }}</summary>
+        <div class="faq__answer">
+          <p>{% if item.a | isTodo %}{% fill item.a %}{% else %}{{ item.a | safe }}{% endif %}</p>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

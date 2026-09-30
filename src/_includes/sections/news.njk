@@ -1,0 +1,16 @@
+<section class="section" id="news" aria-labelledby="news-title">
+  <div class="wrap narrow">
+    <h2 id="news-title">{{ t.updates.title }}</h2>
+    <ol class="news">
+      {% for u in updates %}
+      {%- set text = u.text[lang.code] or u.text.en -%}
+      <li class="news__item">
+        <p class="news__date">
+          {% if u.date | isTodo %}{% fill u.date %}{% else %}<time datetime="{{ u.date }}">{{ u.date | formatDate(lang.locale) }}</time>{% endif %}
+        </p>
+        <p>{% fill text %}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

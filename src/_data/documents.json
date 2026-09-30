@@ -1,0 +1,27 @@
+[
+  {
+    "id": "medcare",
+    "date": "2026-08-17",
+    "image": "/assets/docs/medcare-letter.jpg",
+    "thumb": "/assets/docs/medcare-letter-thumb.jpg",
+    "pdf": "/assets/docs/medcare-letter.pdf"
+  },
+  {
+    "id": "genetics",
+    "date": "2024-04-15",
+    "image": "/assets/docs/genetics.jpg",
+    "thumb": "/assets/docs/genetics-thumb.jpg"
+  },
+  {
+    "id": "diagnosis",
+    "date": "2024-04-17",
+    "image": "/assets/docs/diagnosis.jpg",
+    "thumb": "/assets/docs/diagnosis-thumb.jpg"
+  },
+  {
+    "id": "recommendations",
+    "date": "2024-04-17",
+    "image": "/assets/docs/recommendations.jpg",
+    "thumb": "/assets/docs/recommendations-thumb.jpg"
+  }
+]

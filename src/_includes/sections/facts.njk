@@ -1,0 +1,16 @@
+{%- from "partials/icons.njk" import icon -%}
+{%- set factIcons = ["calendar", "check-circle", "clock"] -%}
+<section class="facts" aria-labelledby="facts-title">
+  <h2 class="visually-hidden" id="facts-title">{{ t.factsTitle }}</h2>
+  <div class="wrap facts__grid">
+    {% for f in t.facts %}
+    <div class="fact fact--{{ loop.index }}">
+      <span class="fact__icon">{{ icon(factIcons[loop.index0]) }}</span>
+      <div>
+        <h3 class="fact__title">{{ f.title | interp(vars) }}</h3>
+        <p>{{ f.text | interp(vars) }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

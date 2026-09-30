@@ -1,0 +1,23 @@
+---
+# The root address sends visitors to the page in their browser's language.
+# It keeps full social-preview tags, because people will share the bare domain too.
+permalink: /index.html
+---
+<!doctype html>
+<html lang="{{ lang.code }}" data-default="{{ lang.code }}" data-languages="{% for l in languages %}{{ l.code }}{% if not loop.last %},{% endif %}{% endfor %}">
+<head>
+  {% include "partials/head.njk" %}
+  <script src="/assets/js/redirect.js"></script>
+  <noscript><meta http-equiv="refresh" content="0; url=/{{ lang.code }}/"></noscript>
+</head>
+<body class="chooser">
+  <main class="chooser__box">
+    <p class="chooser__title">{{ t.chooseLanguage }}</p>
+    <ul class="chooser__list">
+      {% for l in languages %}
+      <li><a class="btn btn--ghost" href="/{{ l.code }}/" hreflang="{{ l.code }}" lang="{{ l.code }}">{{ l.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

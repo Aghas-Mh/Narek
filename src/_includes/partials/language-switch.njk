@@ -1,0 +1,8 @@
+{#- Shown only once a second language is enabled in src/_data/languages.js -#}
+{% if languages.length > 1 %}
+<nav class="lang-switch" aria-label="{{ t.nav.language }}">
+  {% for l in languages %}
+  <a href="/{{ l.code }}/" hreflang="{{ l.code }}" lang="{{ l.code }}" data-lang="{{ l.code }}"{% if l.code == lang.code %} aria-current="page"{% endif %} title="{{ l.name }}">{{ l.code | upper }}</a>
+  {% endfor %}
+</nav>
+{% endif %}

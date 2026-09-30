@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "siteName": "Help Narek",
+    "title": "Help Narek get gene therapy while he can still walk",
+    "description": "Narek is {age} and has Duchenne muscular dystrophy. Doctors in Dubai have confirmed he is eligible for Elevidys gene therapy. Help his family raise {goal}."
+  },
+
+  "og": {
+    "eyebrow": "HELP NAREK",
+    "title": "Help Narek get gene therapy while he can still walk",
+    "subtitle": "Narek has Duchenne muscular dystrophy. Doctors in Dubai confirmed he is eligible for Elevidys gene therapy.",
+    "badge": "Goal: {goal}"
+  },
+
+  "nav": {
+    "skip": "Skip to content",
+    "label": "Sections",
+    "story": "His story",
+    "treatment": "Treatment",
+    "documents": "Documents",
+    "donate": "Donate",
+    "language": "Language"
+  },
+
+  "hero": {
+    "eyebrow": "Duchenne muscular dystrophy · Aragatsotn, Armenia",
+    "title": "Help Narek get gene therapy while he can still walk",
+    "lead": "Narek is {age} years old. He has Duchenne muscular dystrophy, a genetic disease that slowly takes away muscle strength. Doctors in Dubai have confirmed that he is eligible for Elevidys, a one-time gene therapy. It costs {goal}, far more than his family could ever pay alone.",
+    "photoAlt": "Portrait of Narek",
+    "photoCaption": "Narek, {age}",
+    "donate": "Donate now",
+    "share": "Share his story"
+  },
+
+  "progress": {
+    "raised": "Raised so far",
+    "ofGoal": "of {goal}",
+    "updated": "updated {date}",
+    "about": "about"
+  },
+
+  "factsTitle": "Key facts",
+  "facts": [
+    {
+      "title": "{age} years old",
+      "text": "Born on {birthDate}. His mind and development are those of any child his age. It is his muscles that are failing."
+    },
+    {
+      "title": "Eligible for treatment",
+      "text": "His antibody test was negative, and on 17 August 2026 Medcare Royal Speciality Hospital in Dubai confirmed that he is clinically suitable for Elevidys."
+    },
+    {
+      "title": "Time matters",
+      "text": "The therapy is given to boys who can still walk. Most boys with Duchenne lose that ability between the ages of 10 and 14."
+    }
+  ],
+
+  "story": {
+    "title": "Narek's story",
+    "paragraphs": [
+      "Narek lives with his family in the Aragatsotn region of Armenia. He took his first steps at one year old, and for the next few years nothing seemed wrong.",
+      "When he was about five, his parents noticed that something was not right. He tired quickly, found stairs hard, could not squat or jump, and had to push himself up with his hands to get up from the floor.",
+      "Blood tests showed creatine kinase, an enzyme that leaks out of damaged muscle, at more than 11,000 U/L. The normal level is below about 200. In April 2024 a genetic test in Moscow found a deletion of exons 46–48 in his DMD gene, and specialists at the Children's Neuromuscular Centre confirmed the diagnosis: Duchenne muscular dystrophy.",
+      "Since then Narek has taken a steroid every morning to slow the disease down, and his doctors have prescribed daily exercise and physiotherapy."
+    ],
+    "todayTitle": "How Narek is doing today",
+    "today": "TODO: a few sentences about Narek today — can he still walk and climb stairs, does he go to school, what does he love doing?",
+    "parentsTitle": "A message from Narek's parents",
+    "parentsMessage": "TODO: a few sentences from Narek's parents, in their own words",
+    "parentsSignature": "TODO: parents' names, e.g. Tatevik and …, Narek's parents",
+    "mediaTitle": "Narek's everyday life",
+    "videoTitle": "A message from Narek's family",
+    "videoPlaceholder": "Short video from Narek's family — to be added",
+    "photoPlaceholder": "Photo of Narek — to be added"
+  },
+
+  "dmd": {
+    "title": "What is Duchenne muscular dystrophy?",
+    "paragraphs": [
+      "Duchenne is a rare genetic disease that affects about 1 in every 3,500 to 5,000 boys. A fault in the DMD gene means the body cannot make dystrophin, a protein that protects muscle fibres. Without it, muscles are damaged every time they work and are slowly replaced by fat and scar tissue.",
+      "There is no cure. Steroids and physiotherapy slow the disease down, but they cannot stop it."
+    ],
+    "timelineTitle": "How Duchenne usually progresses",
+    "timeline": [
+      { "age": "Ages 2–5", "text": "First signs: frequent falls, trouble with stairs and with getting up from the floor." },
+      { "age": "Ages 5–10", "text": "Weakness grows. Steroids and physiotherapy help to slow it down." },
+      { "age": "Ages 10–14", "text": "Most boys lose the ability to walk and need a wheelchair." },
+      { "age": "Teens and beyond", "text": "Weakness reaches the arms, the heart and the muscles used for breathing." }
+    ],
+    "youAreHere": "Narek is here"
+  },
+
+  "treatment": {
+    "title": "The treatment: Elevidys gene therapy",
+    "paragraphs": [
+      "Elevidys (delandistrogene moxeparvovec) is a one-time gene therapy developed by Sarepta Therapeutics. It is given as a single infusion into a vein. It carries a shortened but working version of the dystrophin gene into muscle cells, so that the body can start making a protective protein called micro-dystrophin.",
+      "Elevidys is not available in Armenia. It is approved in the United States and in several other countries, including the United Arab Emirates, where Medcare Royal Speciality Hospital in Dubai has accepted Narek as a patient."
+    ],
+    "eligibilityTitle": "Narek is eligible",
+    "eligibility": "Before treatment, every patient is tested for antibodies to AAVrh74, the modified, harmless virus that carries the gene. Narek's test was negative. On 17 August 2026 Dr Vivek Mundada, consultant paediatric neurologist at Medcare Royal Speciality Hospital, confirmed that he is clinically suitable for the therapy.",
+    "seeLetter": "Read the hospital's letter",
+    "whyNowTitle": "Why now",
+    "whyNow": "The therapy is given to boys who can still walk, and it can protect only the healthy muscle that remains. Antibody results can also change over time. Every month of waiting matters.",
+    "dateLabel": "Planned treatment date",
+    "honestTitle": "What the treatment can and cannot do",
+    "honest": "Elevidys is not a cure. It is designed to slow the loss of muscle strength and help Narek stay on his feet for longer. Like every gene therapy, it carries risks, including serious liver injury, so his doctors will monitor him closely before and after the infusion."
+  },
+
+  "costs": {
+    "title": "Where the money goes",
+    "intro": "The total cost of Narek's treatment is {goal}.",
+    "items": {
+      "medicine": "Elevidys medicine (one dose)",
+      "hospital": "Hospital stay, tests and infusion",
+      "travel": "Travel and accommodation in Dubai",
+      "followup": "Follow-up checks after treatment"
+    },
+    "total": "Total",
+    "sourceLabel": "Source"
+  },
+
+  "donate": {
+    "title": "How to donate",
+    "intro": "Every contribution matters, whatever its size. Choose the method that suits you best.",
+    "recipientLabel": "Recipient",
+    "recipientName": "Tatevik Poghosyan",
+    "recipientRelation": "TODO: her relation to Narek, e.g. Narek's mother",
+    "cardNumber": "Card number",
+    "walletNumber": "Wallet number",
+    "bank": "Bank",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Copy failed — please select the number",
+    "methods": {
+      "amd": { "title": "Armenian dram card", "hint": "For transfers within Armenia." },
+      "idram": { "title": "Idram wallet", "hint": "Send from the Idram app to this wallet number." },
+      "usd": { "title": "US dollar card", "hint": "" },
+      "eur": { "title": "Euro card", "hint": "" },
+      "rub": { "title": "Russian rouble card", "hint": "For transfers from Russia." },
+      "swift": { "title": "International bank transfer", "hint": "For donors outside Armenia and Russia (SWIFT)." }
+    },
+    "swiftFields": {
+      "beneficiary": "Beneficiary",
+      "account": "Account / IBAN",
+      "bank": "Bank",
+      "swift": "SWIFT / BIC",
+      "bankAddress": "Bank address",
+      "purpose": "Payment purpose"
+    },
+    "afterTitle": "After you donate",
+    "after": "If you would like the family to know about your help, send them a short message using the contacts below. Thank you!"
+  },
+
+  "documents": {
+    "title": "Medical documents",
+    "intro": "We publish Narek's medical documents so that you can check everything yourself. Doctors' personal contact details have been hidden.",
+    "open": "Open",
+    "download": "Download PDF",
+    "close": "Close",
+    "items": {
+      "medcare": {
+        "title": "Letter of acceptance",
+        "source": "Medcare Royal Speciality Hospital, Dubai",
+        "summary": "Confirms the diagnosis, a negative AAVrh74 antibody test, and that Narek is clinically suitable for Elevidys gene therapy.",
+        "language": "In English"
+      },
+      "genetics": {
+        "title": "Genetic test (MLPA)",
+        "source": "Bochkov Research Centre for Medical Genetics, Moscow",
+        "summary": "Found a deletion of exons 46–48 in the DMD gene, the cause of Duchenne muscular dystrophy.",
+        "language": "In Russian"
+      },
+      "diagnosis": {
+        "title": "Diagnosis and examination",
+        "source": "Children's Neuromuscular Centre, Veltishchev Institute, Moscow",
+        "summary": "Confirms Duchenne muscular dystrophy and describes Narek's symptoms and test results at the age of 7.",
+        "language": "In Russian"
+      },
+      "recommendations": {
+        "title": "Treatment recommendations",
+        "source": "Children's Neuromuscular Centre, Veltishchev Institute, Moscow",
+        "summary": "Steroid treatment, vitamin D, regular heart and lung checks, and daily physiotherapy.",
+        "language": "In Russian"
+      }
+    }
+  },
+
+  "updates": {
+    "title": "News"
+  },
+
+  "faq": {
+    "title": "Questions and answers",
+    "items": [
+      {
+        "q": "How can I be sure this is genuine?",
+        "a": "All of Narek's medical documents are published on this page. You can confirm his eligibility with Medcare Royal Speciality Hospital in Dubai (<a href=\"https://www.medcare.ae\" rel=\"noopener\">medcare.ae</a>), and you can contact the family directly using the details below."
+      },
+      {
+        "q": "Why does the treatment cost so much?",
+        "a": "Elevidys is one of the most expensive medicines in the world. In the United States a single dose has a list price of about 3.2 million US dollars, before hospital, travel and follow-up costs."
+      },
+      {
+        "q": "Why Dubai?",
+        "a": "Elevidys is not available in Armenia. It is approved in the United Arab Emirates, and Medcare Royal Speciality Hospital has reviewed Narek's case and accepted him as a patient."
+      },
+      {
+        "q": "Will this cure Narek?",
+        "a": "No. There is no cure for Duchenne yet. Elevidys is designed to slow the disease down so that Narek keeps his strength and stays on his feet for longer."
+      },
+      {
+        "q": "What happens if more, or less, money is raised than needed?",
+        "a": "TODO: the family's promise, e.g. what happens to any surplus, and what happens to the money if the goal is not reached"
+      },
+      {
+        "q": "Who runs this page?",
+        "a": "TODO: the person or organisation running this page, and how they are connected to the family"
+      }
+    ]
+  },
+
+  "share": {
+    "title": "Can't donate? Share Narek's story",
+    "text": "Every share brings Narek closer to his treatment. Send this page to friends and family, or post it in your groups.",
+    "message": "Narek, {age}, has Duchenne muscular dystrophy and needs Elevidys gene therapy while he can still walk. Please help and share:",
+    "native": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "email": "Email",
+    "poster": "Download the poster",
+    "posterAlt": "Fundraising poster for Narek with the donation details"
+  },
+
+  "contact": {
+    "title": "Contact the family",
+    "text": "Questions, offers of help or a word of support: the family will be glad to hear from you.",
+    "labels": {
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "Email",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  },
+
+  "footer": {
+    "note": "A private fundraiser for Narek Grigoryan's medical treatment.",
+    "organizerLabel": "This page is run by",
+    "organizer": "TODO: name of the person or organisation running this page",
+    "updated": "Page updated on {date}"
+  },
+
+  "stickyDonate": "Donate to Narek's treatment",
+  "chooseLanguage": "Choose your language",
+
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page does not exist, but Narek's page does.",
+    "back": "Go to Narek's page"
+  }
+}

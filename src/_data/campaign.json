@@ -12,7 +12,7 @@
   },
 
   "raised": {
-    "amount": 12500000,
+    "amount": 913600,
     "updated": "2026-09-30"
   },
 
@@ -64,10 +64,20 @@
 
   "photos": [
     {
-      "src": "/assets/img/life/1.jpeg"
+      "src": "/assets/img/life/1.jpeg",
+      "alt": {
+        "en": "Narek smiling, in a white sweatshirt",
+        "ru": "Улыбающийся Нарек в белой толстовке",
+        "hy": "Ժպտացող Նարեկը՝ սպիտակ սվիտերով"
+      }
     },
     {
-      "src": "/assets/img/life/2.jpeg"
+      "src": "/assets/img/life/2.jpeg",
+      "alt": {
+        "en": "Narek standing with two teenagers, their hands on his shoulders",
+        "ru": "Нарек с двумя подростками, которые положили руки ему на плечи",
+        "hy": "Նարեկը երկու պատանիների հետ, որոնք ձեռքերը դրել են նրա ուսերին"
+      }
     }
   ]
 }

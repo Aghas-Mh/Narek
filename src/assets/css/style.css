@@ -184,6 +184,13 @@ a:hover { color: var(--navy-600); }
 
 @media (min-width: 860px) { .site-nav { display: flex; } }
 
+/* Small phones: brand + language switcher only. The hero button and the sticky bar handle "Donate". */
+.brand { white-space: nowrap; }
+@media (max-width: 479px) {
+  .site-header__inner { gap: 0.75rem; }
+  .site-header .btn { display: none; }
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -594,6 +601,16 @@ a.doc__thumb:hover img { transform: scale(1.04); }
 .chooser__title { font-weight: 700; font-size: 1.2rem; color: var(--navy-900); }
 .chooser__list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
 .not-found { min-height: 50vh; }
+
+/* ---------- Armenian ---------- */
+
+/* Segoe UI (Windows) has no Armenian glyphs above bold, so heavier weights fall back to a serif font.
+   Capping at 700 keeps headings in the same typeface as the text. */
+:lang(hy) :is(h1, h2, h3, .brand, .hero__title, .progress-card__amount, .fact__title,
+  .timeline__age, .costs tfoot th, .costs tfoot td, .site-footer__brand, .pay__digits) {
+  font-weight: 700;
+}
+:lang(hy) .hero__title { letter-spacing: -0.015em; }
 
 /* ---------- Motion & print ---------- */
 

@@ -2,25 +2,33 @@
   {
     "date": "2026-09-10",
     "text": {
-      "en": "We started raising money for Narek's treatment."
+      "en": "We started raising money for Narek's treatment.",
+      "ru": "Мы начали сбор средств на лечение Нарека.",
+      "hy": "Մենք սկսեցինք դրամահավաք Նարեկի բուժման համար։"
     }
   },
   {
     "date": "2026-08-17",
     "text": {
-      "en": "Medcare Royal Speciality Hospital in Dubai confirmed that Narek is eligible for Elevidys gene therapy."
+      "en": "Medcare Royal Speciality Hospital in Dubai confirmed that Narek is eligible for Elevidys gene therapy.",
+      "ru": "Больница Medcare Royal Speciality Hospital в Дубае подтвердила, что Нареку подходит генная терапия Elevidys.",
+      "hy": "Դուբայի Medcare Royal Speciality Hospital-ը հաստատեց, որ Elevidys գենային թերապիան Նարեկին համապատասխանում է։"
     }
   },
   {
     "date": "2024-04-17",
     "text": {
-      "en": "Specialists at the Children's Neuromuscular Centre in Moscow confirmed the diagnosis: Duchenne muscular dystrophy."
+      "en": "Specialists at the Children's Neuromuscular Centre in Moscow confirmed the diagnosis: Duchenne muscular dystrophy.",
+      "ru": "Специалисты Детского нервно-мышечного центра в Москве подтвердили диагноз: мышечная дистрофия Дюшенна.",
+      "hy": "Մոսկվայի Մանկական նյարդամկանային կենտրոնի մասնագետները հաստատեցին ախտորոշումը՝ Դյուշենի մկանային դիստրոֆիա։"
     }
   },
   {
     "date": "2024-04-15",
     "text": {
-      "en": "A genetic test in Moscow found the deletion in the DMD gene that causes Duchenne. Narek started daily steroid treatment the same day."
+      "en": "A genetic test in Moscow found the deletion in the DMD gene that causes Duchenne. Narek started daily steroid treatment the same day.",
+      "ru": "Генетический анализ в Москве выявил делецию в гене DMD, которая вызывает миодистрофию Дюшенна. В тот же день Нарек начал ежедневную гормональную терапию.",
+      "hy": "Մոսկվայում կատարված գենետիկական հետազոտությունը հայտնաբերեց DMD գենի դելեցիան, որն առաջացնում է Դյուշենի հիվանդությունը։ Նույն օրը Նարեկը սկսեց ամենօրյա ստերոիդային բուժումը։"
     }
   }
 ]

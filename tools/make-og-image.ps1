@@ -32,7 +32,10 @@ if (-not $Locale) { $Locale = @{ en = "en-GB"; hy = "hy-AM"; ru = "ru-RU" }[$Lan
 if (-not $Locale) { $Locale = "en-GB" }
 $culture = [System.Globalization.CultureInfo]::GetCultureInfo($Locale)
 $symbols = @{ RUB = [string][char]0x20BD; USD = '$'; EUR = [string][char]0x20AC; AMD = [string][char]0x058F }
-$goal = ([double]$campaign.goal.amount).ToString("N0", $culture) + " " + $symbols[$campaign.goal.currency]
+$numberFormat = $culture.NumberFormat.Clone()
+# Match the website (browser/ICU formatting): Armenian groups digits with spaces, .NET uses commas
+if ($Lang -eq "hy") { $numberFormat.NumberGroupSeparator = [string][char]0x00A0 }
+$goal = ([double]$campaign.goal.amount).ToString("N0", $numberFormat) + " " + $symbols[$campaign.goal.currency]
 
 $W = 1200; $H = 630
 $navy = [System.Drawing.Color]::FromArgb(20, 33, 61)

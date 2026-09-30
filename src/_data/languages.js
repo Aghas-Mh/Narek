@@ -5,8 +5,8 @@ import { deepMerge } from "../../lib/helpers.js";
 // Any string missing from a translation falls back to English, so a partial translation still builds.
 const LANGUAGES = [
   { code: "en", name: "English", locale: "en-GB", enabled: true },
-  { code: "hy", name: "Հայերեն", locale: "hy-AM", enabled: false },
-  { code: "ru", name: "Русский", locale: "ru-RU", enabled: false },
+  { code: "hy", name: "Հայերեն", locale: "hy-AM", enabled: true },
+  { code: "ru", name: "Русский", locale: "ru-RU", enabled: true },
 ];
 
 const read = (code) => {

@@ -2,7 +2,7 @@
 
 A static website for Narek Grigoryan's Elevidys gene therapy fundraiser. It's built with [Eleventy](https://www.11ty.dev/), and the output in `_site/` is plain HTML, CSS and a little JavaScript, so it can be hosted anywhere for free.
 
-English is live. Armenian and Russian are ready to add (see [Adding Armenian or Russian](#adding-armenian-or-russian)).
+The site is in three languages: English (`/en/`), Armenian (`/hy/`) and Russian (`/ru/`). See [Languages](#languages).
 
 ## Run it locally
 
@@ -61,18 +61,21 @@ In `src/_data/campaign.json`:
 
 For the video, upload it to YouTube (as unlisted if you prefer) and put its ID in `campaign.json` → `video`. For example, the ID in `https://youtu.be/AbC123xyz` is `AbC123xyz`.
 
-## Adding Armenian or Russian
+## Languages
 
-1. Copy `src/_data/i18n/en.json` to `hy.json` (Armenian) or `ru.json` (Russian) and translate the **values**. Keep the keys and the `{placeholders}` such as `{age}` and `{goal}`. Anything left untranslated falls back to English.
-2. In `src/_data/languages.js`, set `enabled: true` for that language.
-3. In `src/_data/updates.json`, add the translated news next to `"en"`, e.g. `"hy": "…"`.
-4. Create the social preview image for the new language:
+All text lives in `src/_data/i18n/en.json`, `hy.json` and `ru.json`, and each file has the same keys.
 
-   ```bash
-   powershell -ExecutionPolicy Bypass -File tools\make-og-image.ps1 -Lang hy
-   ```
+- **Changing text:** edit the same key in all three files. Keep `{placeholders}` such as `{age}` and `{goal}` as they are. A key missing from `hy.json` or `ru.json` falls back to English.
+- **News and photo descriptions:** these live in `updates.json` and `campaign.json` → `photos`, with `"en"`, `"hy"` and `"ru"` side by side.
+- **Social preview images:** after changing the `og` texts or the goal, run the script once per language:
 
-The page appears at `/hy/` or `/ru/` and the language switcher shows up in the header. The bare domain `/` sends each visitor to their browser's language. To make Armenian the fallback language, set `defaultLanguage` in `src/_data/site.json`.
+  ```bash
+  powershell -ExecutionPolicy Bypass -File tools\make-og-image.ps1 -Lang hy
+  ```
+
+- **Which language opens first:** the bare domain `/` opens the language the visitor last chose, otherwise their browser's language, otherwise `defaultLanguage` from `src/_data/site.json` (currently English).
+- **Turning a language off:** set `enabled: false` in `src/_data/languages.js`.
+- **Adding another language:** copy `en.json` to `<code>.json`, translate it, and add the language to `languages.js`.
 
 ## Social preview image
 

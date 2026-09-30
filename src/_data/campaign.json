@@ -31,21 +31,24 @@
   },
 
   "payments": [
-    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "bank": "TODO: bank name" },
+    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "bank": "ACBA Bank" },
     { "id": "idram", "type": "wallet", "currency": "AMD", "number": "29437820" },
-    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "bank": "TODO: bank name" },
-    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "bank": "TODO: bank name" },
+    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "bank": "ACBA Bank" },
+    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "bank": "ACBA Bank" },
     { "id": "rub", "type": "card", "currency": "RUB", "number": "2200151392856287", "bank": "Alfa-Bank" },
     {
       "id": "swift",
       "type": "swift",
       "currency": "USD · EUR",
-      "beneficiary": "TODO: account holder's name exactly as the bank writes it",
-      "account": "TODO: account number or IBAN",
-      "bank": "TODO: bank name",
-      "swift": "TODO: SWIFT / BIC code",
-      "bankAddress": "TODO: bank address",
-      "purpose": "TODO: text donors should write as the payment purpose, e.g. Gift for Narek Grigoryan's medical treatment"
+      "beneficiary": "TODO: Tatevik's name exactly as ACBA writes it on her account (e.g. TATEVIK POGHOSYAN — check the spelling in the acba digital app)",
+      "accountUsd": "TODO: 16-digit number of her ACBA US-dollar account (acba digital app → account → details; not the card number)",
+      "accountEur": "TODO: 16-digit number of her ACBA euro account (acba digital app → account → details; not the card number)",
+      "bank": "ACBA Bank OJSC",
+      "swift": "AGCAAM22",
+      "bankAddress": "82–84 Arami Street, Yerevan, Armenia",
+      "intermediaryEur": "Crédit Agricole CIB, Paris · SWIFT BSUIFRPP · ACBA's account FR7631489000100026169115947",
+      "intermediaryUsd": "TODO: ask ACBA which USD correspondent to give (its website lists TBC Bank, TBCBGE22, and Bank of Georgia, BAGAGE22) — or delete this line",
+      "purpose": "Gift for the medical treatment of Narek Grigoryan"
     }
   ],
 
@@ -57,7 +60,14 @@
     "facebook": "https://www.facebook.com/share/1NrcenRxzR/"
   },
 
-  "video": "TODO: YouTube video ID of a short message from the family, e.g. dQw4w9WgXcQ (optional)",
+  "video": "./assets/stairs.mp4",
 
-  "photos": []
+  "photos": [
+    {
+      "src": "/assets/img/life/1.jpeg"
+    },
+    {
+      "src": "/assets/img/life/2.jpeg"
+    }
+  ]
 }

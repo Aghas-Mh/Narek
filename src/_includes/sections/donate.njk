@@ -26,15 +26,18 @@
 
         {% if m.type == "swift" %}
         <dl class="pay__fields">
-          {% for key in ["beneficiary", "account", "bank", "swift", "bankAddress", "purpose"] %}
+          {#- Fields appear in the order of t.donate.swiftFields; delete one from campaign.json to hide it -#}
+          {% for key, label in t.donate.swiftFields %}
+          {% if m[key] is defined %}
           <div>
-            <dt>{{ t.donate.swiftFields[key] }}</dt>
+            <dt>{{ label }}</dt>
             <dd>
               {% if m[key] | isTodo %}{% fill m[key] %}
-              {% else %}<span class="pay__value">{{ m[key] }}</span>{% if key in ["account", "swift", "beneficiary"] %} {{ copyButton(m[key], t.donate.swiftFields[key]) }}{% endif %}
+              {% else %}<span class="pay__value">{{ m[key] }}</span>{% if key in ["beneficiary", "accountUsd", "accountEur", "swift", "purpose"] %} {{ copyButton(m[key], label) }}{% endif %}
               {% endif %}
             </dd>
           </div>
+          {% endif %}
           {% endfor %}
         </dl>
         {% else %}

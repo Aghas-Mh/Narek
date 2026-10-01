@@ -1,10 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
+import { HtmlBasePlugin } from "@11ty/eleventy";
 import * as h from "./lib/helpers.js";
 
 const DATA_DIR = "src/_data";
 
+// Set by the GitHub Pages workflow: the site lives at https://<user>.github.io/<repo>/,
+// so every root-relative link needs the "/<repo>/" prefix, and full URLs need that address.
+const PATH_PREFIX = process.env.PATH_PREFIX || "/";
+const SITE_URL_OVERRIDE = process.env.SITE_URL || "";
+
 export default function (eleventyConfig) {
+  // Rewrites href/src/srcset (and the redirect <meta>) from "/en/" to "/<repo>/en/" when PATH_PREFIX is set.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets", "src/_headers": "_headers" });
 
   eleventyConfig.addFilter("isTodo", h.isTodo);
@@ -16,8 +25,13 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("percentLabel", h.percentLabel);
   eleventyConfig.addFilter("contactHref", (value, kind) => h.contactHref(kind, value));
   eleventyConfig.addFilter("shareLinks", h.shareLinks);
-  // Absolute URL once site.url is set; relative until then.
-  eleventyConfig.addFilter("absUrl", (p, siteUrl) => (h.isTodo(siteUrl) ? p : new URL(p, siteUrl).href));
+  // Absolute URL once the site address is known (site.json, or SITE_URL from the deploy workflow); relative until then.
+  // The address may include a path (https://user.github.io/help-narek/), so join instead of resolving from the root.
+  eleventyConfig.addFilter("absUrl", (p, siteUrl) => {
+    const base = SITE_URL_OVERRIDE || (h.isTodo(siteUrl) ? "" : siteUrl);
+    if (!base) return p;
+    return new URL(String(p).replace(/^\//, ""), base.endsWith("/") ? base : `${base}/`).href;
+  });
   // Per-language social preview image, falling back to the English one.
   eleventyConfig.addFilter("ogImage", (code) =>
     fs.existsSync(`src/assets/img/og/og-${code}.jpg`) ? `/assets/img/og/og-${code}.jpg` : "/assets/img/og/og-en.jpg",
@@ -49,6 +63,7 @@ export default function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: PATH_PREFIX,
     dir: { input: "src", output: "_site" },
     templateFormats: ["njk"],
     htmlTemplateEngine: "njk",

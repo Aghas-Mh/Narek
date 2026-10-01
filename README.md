@@ -81,7 +81,19 @@ All text lives in `src/_data/i18n/en.json`, `hy.json` and `ru.json`, and each fi
 
 `src/assets/img/og/og-en.jpg` is the picture WhatsApp, Telegram, Facebook and others show when the link is shared. It is built from the `og` texts in `i18n/<lang>.json` and the goal in `campaign.json`. Run `tools\make-og-image.ps1` again after changing either.
 
-## Publishing (Cloudflare Pages, free)
+## Publishing on GitHub Pages (current setup)
+
+The site is published by `.github/workflows/deploy.yml`. Every push to `main` builds it and deploys it to **https://aghas-mh.github.io/Narek/**, and the bare address sends visitors to `/en/`, `/hy/` or `/ru/`.
+
+One-time setup on github.com:
+
+1. **Repository visibility.** On a free GitHub plan, Pages only works for public repositories (**Settings → General → Danger zone → Change visibility**). With GitHub Pro the repository can stay private; the site is public either way.
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+3. Open **Actions → Deploy to GitHub Pages → Run workflow**, or push any change.
+
+The workflow sets the `/Narek/` path prefix and the full site address automatically, so links and social previews work without editing `site.json`. If you later add a custom domain (Settings → Pages → Custom domain), the next deploy picks it up on its own. GitHub Pages ignores the `_headers` security file.
+
+## Publishing on Cloudflare Pages (alternative, free)
 
 1. Put this folder in a GitHub repository (it can be private).
 2. In Cloudflare, open **Workers & Pages → Create → Pages → Connect to Git**, pick the repository, and set:
@@ -90,7 +102,7 @@ All text lives in `src/_data/i18n/en.json`, `hy.json` and `ru.json`, and each fi
 3. Add your custom domain in Cloudflare, then set `site.json` → `url` to it (e.g. `https://helpnarek.org`). Link previews need the full address.
 4. Share the link in WhatsApp or Telegram to check the preview. For Facebook, use the [Sharing Debugger](https://developers.facebook.com/tools/debug/).
 
-After that, every change pushed to GitHub, including edits made directly on github.com, republishes the site in about a minute. Netlify works the same way. GitHub Pages also works but ignores the `_headers` security file.
+After that, every change pushed to GitHub, including edits made directly on github.com, republishes the site in about a minute. Netlify works the same way.
 
 ## Before launch
 

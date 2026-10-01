@@ -1,4 +1,6 @@
 // Root address: go to the visitor's saved language, else their browser language, else the default.
+// Targets come from the page's <link rel="alternate" hreflang> tags, so they already include
+// any path prefix (e.g. /help-narek/ on GitHub Pages).
 (() => {
   const root = document.documentElement;
   const available = (root.dataset.languages || "").split(",").filter(Boolean);
@@ -15,5 +17,7 @@
       if (available.includes(code)) { pick = code; break; }
     }
   }
-  location.replace(`/${pick}/${location.search}${location.hash}`);
+
+  const link = document.querySelector(`link[rel="alternate"][hreflang="${pick}"]`);
+  location.replace((link ? link.href : `${pick}/`) + location.search + location.hash);
 })();

@@ -135,11 +135,11 @@
     "copied": "Copied",
     "copyFailed": "Copy failed — please select the number",
     "methods": {
+      "rub": { "title": "Russian rouble card", "hint": "For transfers from Russia." },
       "amd": { "title": "Armenian dram card", "hint": "For transfers within Armenia." },
       "idram": { "title": "Idram wallet", "hint": "Send from the Idram app to this wallet number." },
       "usd": { "title": "US dollar card", "hint": "" },
       "eur": { "title": "Euro card", "hint": "" },
-      "rub": { "title": "Russian rouble card", "hint": "For transfers from Russia." },
       "swift": { "title": "International bank transfer", "hint": "For donors abroad (SWIFT). Armenian banks do not use IBAN, so enter the account number exactly as shown. Most banks do not need the intermediary bank; add it only if your bank asks for it." }
     },
     "swiftFields": {

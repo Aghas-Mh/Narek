@@ -7,13 +7,14 @@ pagination:
 permalink: "/{{ lang.code }}/"
 layout: layouts/base.njk
 ---
+{#- Order: who + how much → how to give → why trust it (story, facts, medicine, documents) → the rest -#}
 {% include "sections/hero.njk" %}
-{% include "sections/facts.njk" %}
+{% include "sections/donate.njk" %}
 {% include "sections/story.njk" %}
+{% include "sections/facts.njk" %}
 {% include "sections/duchenne.njk" %}
 {% include "sections/treatment.njk" %}
 {# Hidden until the cost breakdown is known: {% include "sections/costs.njk" %} #}
-{% include "sections/donate.njk" %}
 {% include "sections/documents.njk" %}
 {% include "sections/news.njk" %}
 {% include "sections/faq.njk" %}

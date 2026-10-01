@@ -6,6 +6,10 @@
       <h1 class="hero__title">{{ t.hero.title }}</h1>
       <p class="lead">{{ t.hero.lead | interp(vars) }}</p>
 
+      {% if not (campaign.treatment.targetDate | isTodo) %}
+      <p class="hero__date">{{ icon("calendar") }} {{ t.treatment.dateLabel }}{{ t.sep }}<strong>{{ campaign.treatment.targetDate | formatDate(lang.locale) }}</strong></p>
+      {% endif %}
+
       {% include "partials/progress.njk" %}
 
       <div class="actions">

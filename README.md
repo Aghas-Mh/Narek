@@ -74,12 +74,13 @@ All text lives in `src/_data/i18n/en.json`, `hy.json` and `ru.json`, and each fi
   ```
 
 - **Which language opens first:** the bare domain `/` opens the language the visitor last chose, otherwise their browser's language, otherwise `defaultLanguage` from `src/_data/site.json` (currently English).
+- **Currency on each page:** set by `currency` in `src/_data/languages.js`: US dollars for English and Armenian, roubles for Russian. Amounts are stored in roubles in `campaign.json`. The dollar figures are converted with your own goal ratio (`goal.approx`: 270,000,000 ₽ ≈ $3,300,000), are marked "≈", and the rouble total is shown underneath.
 - **Turning a language off:** set `enabled: false` in `src/_data/languages.js`.
 - **Adding another language:** copy `en.json` to `<code>.json`, translate it, and add the language to `languages.js`.
 
 ## Social preview image
 
-`src/assets/img/og/og-en.jpg` is the picture WhatsApp, Telegram, Facebook and others show when the link is shared. It is built from the `og` texts in `i18n/<lang>.json` and the goal in `campaign.json`. Run `tools\make-og-image.ps1` again after changing either.
+`src/assets/img/og/og-<lang>.jpg` is the picture WhatsApp, Telegram, Facebook and others show when the link is shared. It is built from the `og` texts in `i18n/<lang>.json`, with the goal in the page's currency. The script builds the site first and reads the finished texts from `_site/og-data.json`. Run `tools\make-og-image.ps1 -Lang <lang>` again after changing the texts or the goal.
 
 ## Publishing on GitHub Pages (current setup)
 

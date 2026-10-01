@@ -229,6 +229,14 @@ a:hover { color: var(--navy-600); }
 
 .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 
+.hero__date {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin: 0;
+  padding: 0.45em 1em; border-radius: 999px;
+  background: var(--amber-100); border: 1px solid var(--amber); color: var(--amber-ink);
+  font-size: 0.98rem; font-weight: 600;
+}
+.hero__date strong { color: var(--navy-900); }
+
 @media (min-width: 960px) {
   .hero__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
   .hero__photo { justify-self: end; }
@@ -383,49 +391,86 @@ a:hover { color: var(--navy-600); }
 
 /* ---------- Donate ---------- */
 
+/* Sits right under the hero, on white, so it reads as its own step */
 .section--donate {
-  background:
-    radial-gradient(50rem 25rem at 100% 0%, rgb(245 181 61 / 0.16), transparent 60%),
-    var(--bg);
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  background: var(--surface);
+  border-block: 1px solid var(--line);
 }
-.donate__head { max-width: 46rem; margin-bottom: 2rem; }
+/* Narrower than the page, but left-aligned with the other sections */
+.donate > * { max-width: 940px; }
+.donate__head { margin-bottom: 1.5rem; }
+.donate__head .lead { margin-bottom: 1rem; }
 .recipient {
   display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0.35em;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
-  padding: 0.5em 1.1em; margin: 0; box-shadow: var(--shadow-sm);
+  background: var(--alt); border-radius: 14px;
+  padding: 0.45em 1.1em; margin: 0;
 }
 .recipient strong { color: var(--navy-900); }
 
-/* Two roomy columns so card numbers and their Copy button always fit on one line.
-   "dense" lets the "After you donate" tile fill the gap next to an odd card. */
-.pay-grid {
-  display: grid; gap: 1.25rem; grid-auto-flow: row dense;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
-}
-.pay {
-  display: flex; flex-direction: column;
+/* One row per card / wallet: currency · name + bank · number · Copy */
+.pay-list {
+  list-style: none; margin: 0; padding: 0;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
-  padding: 1.4rem; box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow); overflow: hidden;
 }
-.pay--swift { grid-column: 1 / -1; }
-.pay__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.pay__head h3 { margin: 0; font-size: 1.1rem; }
-.pay__currency {
-  flex: none; background: var(--navy-900); color: #fff;
-  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em;
-  padding: 0.25em 0.65em; border-radius: 999px;
+.pay-row {
+  display: grid; align-items: center; gap: 0.5rem 1rem;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  grid-template-areas: "cur info number copy";
+  padding: 1rem 1.25rem;
 }
-.pay__label { margin: 0 0 0.2rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
-.pay__number {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 0.75rem;
-  background: var(--alt); border-radius: var(--radius-sm); padding: 0.55rem 0.55rem 0.55rem 0.9rem;
+.pay-row + .pay-row { border-top: 1px solid var(--line); }
+.pay-row__currency {
+  grid-area: cur; display: grid; place-items: center;
+  min-width: 52px; height: 34px; padding: 0 0.55rem; border-radius: 10px;
+  background: var(--navy-900); color: #fff;
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap;
 }
-.pay__digits {
-  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.3rem); font-weight: 750; letter-spacing: 0.04em;
+.pay-row__info { grid-area: info; min-width: 0; }
+.pay-row__title { margin: 0; font-size: 1.02rem; font-weight: 700; letter-spacing: 0; color: var(--navy-900); }
+.pay-row__meta { margin: 0.1rem 0 0; font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
+.pay-row__number {
+  grid-area: number;
+  font-size: 1.15rem; font-weight: 750; letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums; color: var(--navy-900); white-space: nowrap;
 }
-.pay__bank { margin: 0.8rem 0 0; font-size: 0.95rem; }
-.pay__hint { margin: 0.6rem 0 0; font-size: 0.92rem; color: var(--muted); }
+.pay-row > .copy { grid-area: copy; }
+@media (max-width: 640px) {
+  .pay-row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "cur info info" "number number copy";
+    align-items: start;
+    padding: 1rem;
+  }
+  .pay-row__currency { height: 26px; min-width: 44px; font-size: 0.72rem; margin-top: 0.1rem; }
+  .pay-row__number, .pay-row > .copy { align-self: center; }
+  .pay-row__number { font-size: 1.08rem; }
+}
+
+/* International transfer: folded by default */
+.pay-swift {
+  margin-top: 1rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.pay-swift summary {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem; cursor: pointer; list-style: none;
+}
+.pay-swift summary::-webkit-details-marker { display: none; }
+.pay-swift summary::after {
+  content: ""; flex: none; margin: 0 0.4rem 0 auto;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--navy-800); border-bottom: 2px solid var(--navy-800);
+  transform: rotate(45deg) translate(-2px, -2px); transition: transform 0.2s;
+}
+.pay-swift[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.pay-swift__title { display: flex; flex-direction: column; min-width: 0; }
+.pay-swift__toggle { font-size: 0.88rem; font-weight: 600; color: var(--navy-600); text-decoration: underline; text-underline-offset: 0.2em; }
+.pay-swift[open] .pay-swift__toggle { display: none; }
+.pay-swift__body { padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--line); }
+.pay-swift__hint { font-size: 0.92rem; color: var(--muted); }
 
 .pay__fields { display: grid; gap: 0.9rem 2rem; margin: 0; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
 .pay__fields dt { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
@@ -443,13 +488,9 @@ a:hover { color: var(--navy-600); }
 .copy:hover { border-color: var(--navy-600); }
 .copy.is-done { background: var(--green); border-color: var(--green); color: #fff; }
 
-.after-donate {
-  display: flex; gap: 1rem; align-items: flex-start;
-  background: var(--navy-900); color: #dfe5f1; border-radius: var(--radius-lg); padding: 1.4rem 1.6rem;
-}
-.after-donate > .icon { color: var(--amber); width: 28px; height: 28px; margin-top: 2px; }
-.after-donate h3 { color: #fff; margin-bottom: 0.25rem; font-size: 1.1rem; }
-.after-donate p { margin: 0; }
+.after-donate { display: flex; gap: 0.6rem; align-items: flex-start; margin: 1.5rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.after-donate > .icon { color: var(--amber-600); margin-top: 0.2em; }
+.after-donate strong { color: var(--navy-900); }
 
 /* ---------- Documents ---------- */
 
@@ -607,7 +648,7 @@ a.doc__thumb:hover img { transform: scale(1.04); }
 /* Segoe UI (Windows) has no Armenian glyphs above bold, so heavier weights fall back to a serif font.
    Capping at 700 keeps headings in the same typeface as the text. */
 :lang(hy) :is(h1, h2, h3, .brand, .hero__title, .progress-card__amount, .fact__title,
-  .timeline__age, .costs tfoot th, .costs tfoot td, .site-footer__brand, .pay__digits) {
+  .timeline__age, .costs tfoot th, .costs tfoot td, .site-footer__brand, .pay-row__number) {
   font-weight: 700;
 }
 :lang(hy) .hero__title { letter-spacing: -0.015em; }

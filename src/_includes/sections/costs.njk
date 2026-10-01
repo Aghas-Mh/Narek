@@ -15,11 +15,12 @@
       <tfoot>
         <tr>
           <th scope="row">{{ t.costs.total }}</th>
-          <td>{{ vars.goal }}</td>
+          {#- Same currency as the items above (the goal currency), not the page's display currency -#}
+          <td>{{ campaign.goal.amount | money(campaign.goal.currency, lang.locale) }}</td>
         </tr>
       </tfoot>
     </table>
 
-    <p class="small muted">{{ t.costs.sourceLabel }}: {% fill campaign.costs.source %}</p>
+    <p class="small muted">{{ t.costs.sourceLabel }}{{ t.sep }}{% fill campaign.costs.source %}</p>
   </div>
 </section>

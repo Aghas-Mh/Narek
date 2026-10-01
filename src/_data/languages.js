@@ -3,10 +3,12 @@ import { deepMerge } from "../../lib/helpers.js";
 
 // To add a language: copy i18n/en.json to i18n/<code>.json, translate it, then set enabled: true below.
 // Any string missing from a translation falls back to English, so a partial translation still builds.
+// `currency`: how the goal and the amount raised are shown on that page. Amounts are stored in the
+// goal currency (campaign.json) and converted with the goal's own "approx" figure for that currency.
 const LANGUAGES = [
-  { code: "en", name: "English", locale: "en-GB", enabled: true },
-  { code: "hy", name: "Հայերեն", locale: "hy-AM", enabled: true },
-  { code: "ru", name: "Русский", locale: "ru-RU", enabled: true },
+  { code: "en", name: "English", locale: "en-GB", currency: "USD", enabled: true },
+  { code: "hy", name: "Հայերեն", locale: "hy-AM", currency: "USD", enabled: true },
+  { code: "ru", name: "Русский", locale: "ru-RU", currency: "RUB", enabled: true },
 ];
 
 const read = (code) => {

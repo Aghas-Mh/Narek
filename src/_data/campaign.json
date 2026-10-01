@@ -40,14 +40,14 @@
       "id": "swift",
       "type": "swift",
       "currency": "USD · EUR",
-      "beneficiary": "TODO: Tatevik's name exactly as ACBA writes it on her account (e.g. TATEVIK POGHOSYAN — check the spelling in the acba digital app)",
-      "accountUsd": "TODO: 16-digit number of her ACBA US-dollar account (acba digital app → account → details; not the card number)",
-      "accountEur": "TODO: 16-digit number of her ACBA euro account (acba digital app → account → details; not the card number)",
+      "beneficiary": "",
+      "accountUsd": "",
+      "accountEur": "",
       "bank": "ACBA Bank OJSC",
       "swift": "AGCAAM22",
       "bankAddress": "82–84 Arami Street, Yerevan, Armenia",
       "intermediaryEur": "Crédit Agricole CIB, Paris · SWIFT BSUIFRPP · ACBA's account FR7631489000100026169115947",
-      "intermediaryUsd": "TODO: ask ACBA which USD correspondent to give (its website lists TBC Bank, TBCBGE22, and Bank of Georgia, BAGAGE22) — or delete this line",
+      "intermediaryUsd": "",
       "purpose": "Gift for the medical treatment of Narek Grigoryan"
     }
   ],

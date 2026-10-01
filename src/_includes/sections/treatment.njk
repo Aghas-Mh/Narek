@@ -21,7 +21,7 @@
         <h3>{{ t.treatment.whyNowTitle }}</h3>
         <p>{{ t.treatment.whyNow }}</p>
         {% if campaign.treatment.targetDate is defined %}
-        <p class="card__meta">{{ t.treatment.dateLabel }}:
+        <p class="card__meta">{{ t.treatment.dateLabel }}{{ t.sep | trim }}
           {% if campaign.treatment.targetDate | isTodo %}{% fill campaign.treatment.targetDate %}{% else %}<strong>{{ campaign.treatment.targetDate | formatDate(lang.locale) }}</strong>{% endif %}
         </p>
         {% endif %}

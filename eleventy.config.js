@@ -19,6 +19,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("isTodo", h.isTodo);
   eleventyConfig.addFilter("interp", h.interp);
   eleventyConfig.addFilter("money", h.money);
+  eleventyConfig.addFilter("moneyCompact", h.moneyCompact);
   eleventyConfig.addFilter("formatDate", h.formatDate);
   eleventyConfig.addFilter("groupDigits", h.groupDigits);
   eleventyConfig.addFilter("percent", h.percent);

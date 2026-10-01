@@ -2,7 +2,8 @@
 .SYNOPSIS
   Creates the 1200x630 social-preview image shown when the page is shared
   (WhatsApp, Telegram, Facebook, Viber, VK...). Texts come from the "og" block
-  of src/_data/i18n/<Lang>.json, the goal from src/_data/campaign.json.
+  of src/_data/i18n/<Lang>.json. The script builds the site first and reads
+  _site/og-data.json, so the goal ({goal}) is formatted exactly as the page shows it.
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File tools\make-og-image.ps1 -Lang en
@@ -12,30 +13,18 @@
 #>
 param(
   [string]$Lang = "en",
-  [string]$Font = "Segoe UI",
-  [string]$Locale = ""
+  [string]$Font = "Segoe UI"
 )
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing
 
 $root = Split-Path $PSScriptRoot -Parent
-$data = Join-Path $root "src\_data"
-$readJson = { param($p) Get-Content $p -Raw -Encoding UTF8 | ConvertFrom-Json }
 
-$en = & $readJson (Join-Path $data "i18n\en.json")
-$langFile = Join-Path $data "i18n\$Lang.json"
-$t = if (Test-Path $langFile) { & $readJson $langFile } else { $en }
-function Pick($key) { if ($t.og -and $t.og.$key) { $t.og.$key } else { $en.og.$key } }
-
-$campaign = & $readJson (Join-Path $data "campaign.json")
-if (-not $Locale) { $Locale = @{ en = "en-GB"; hy = "hy-AM"; ru = "ru-RU" }[$Lang] }
-if (-not $Locale) { $Locale = "en-GB" }
-$culture = [System.Globalization.CultureInfo]::GetCultureInfo($Locale)
-$symbols = @{ RUB = [string][char]0x20BD; USD = '$'; EUR = [string][char]0x20AC; AMD = [string][char]0x058F }
-$numberFormat = $culture.NumberFormat.Clone()
-# Match the website (browser/ICU formatting): Armenian groups digits with spaces, .NET uses commas
-if ($Lang -eq "hy") { $numberFormat.NumberGroupSeparator = [string][char]0x00A0 }
-$goal = ([double]$campaign.goal.amount).ToString("N0", $numberFormat) + " " + $symbols[$campaign.goal.currency]
+Push-Location $root
+try { npx @11ty/eleventy --quiet | Out-Null } finally { Pop-Location }
+$og = (Get-Content (Join-Path $root "_site\og-data.json") -Raw -Encoding UTF8 | ConvertFrom-Json).$Lang
+if (-not $og) { throw "Language '$Lang' is not enabled in src/_data/languages.js" }
+function Pick($key) { $og.$key }
 
 $W = 1200; $H = 630
 $navy = [System.Drawing.Color]::FromArgb(20, 33, 61)
@@ -89,7 +78,7 @@ $ms = $g.MeasureString($sub, $fSub, $textW, $tf)
 $g.DrawString($sub, $fSub, (New-Object System.Drawing.SolidBrush $soft), (New-Object System.Drawing.RectangleF $x, $y, $textW, ($ms.Height + 8)), $tf)
 
 # Goal badge
-$badge = (Pick "badge") -replace "\{goal\}", $goal
+$badge = Pick "badge"
 $fBadge = New-Object System.Drawing.Font $Font, 27, $bold, $px
 $mb = $g.MeasureString($badge, $fBadge, 2000, $tf)
 $bw = [int]$mb.Width + 48; $bh = 60; $bx = $x; $by = $H - 64 - $bh; $r = $bh

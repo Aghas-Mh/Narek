@@ -25,7 +25,7 @@
   "hero": {
     "eyebrow": "Duchenne muscular dystrophy · Aragatsotn, Armenia",
     "title": "Help Narek get gene therapy while he can still walk",
-    "lead": "Narek is {age} years old. He has Duchenne muscular dystrophy, a genetic disease that slowly takes away muscle strength. Doctors in Dubai have confirmed that he is eligible for Elevidys, a one-time gene therapy. It costs {goal}, far more than his family could ever pay alone.",
+    "lead": "Narek is {age} years old and has Duchenne muscular dystrophy. Doctors in Dubai have confirmed that he is clinically eligible for Elevidys, a one-time gene therapy that costs about {goal}, far more than his family can pay alone.",
     "photoAlt": "Portrait of Narek",
     "photoCaption": "Narek, {age}",
     "donate": "Donate now",
@@ -35,7 +35,8 @@
   "progress": {
     "raised": "Raised so far",
     "ofGoal": "of {goal}",
-    "updated": "updated {date}",
+    "updated": "Updated {date}",
+    "received": "{amount} received in total",
     "about": "about"
   },
 
@@ -120,8 +121,10 @@
   },
 
   "donate": {
+    "eyebrow": "Donate to Narek",
     "title": "How to donate",
-    "intro": "Every contribution matters, whatever its size. Choose the method that suits you best.",
+    "intro": "Every contribution matters. Choose the method that works best for you: a bank card, Idram or an international bank transfer.",
+    "swiftShow": "Show bank details",
     "recipientLabel": "Recipient",
     "recipientName": "Tatevik Poghosyan",
     "recipientRelation": "Narek's mother",
@@ -210,14 +213,6 @@
       {
         "q": "Will this cure Narek?",
         "a": "No. There is no cure for Duchenne yet. Elevidys is designed to slow the disease down so that Narek keeps his strength and stays on his feet for longer."
-      },
-      {
-        "q": "What happens if more, or less, money is raised than needed?",
-        "a": "TODO: the family's promise, e.g. what happens to any surplus, and what happens to the money if the goal is not reached"
-      },
-      {
-        "q": "Who runs this page?",
-        "a": "TODO: the person or organisation running this page, and how they are connected to the family"
       }
     ]
   },
@@ -256,6 +251,7 @@
 
   "stickyDonate": "Donate to Narek's treatment",
   "chooseLanguage": "Choose your language",
+  "sep": ": ",
 
   "notFound": {
     "title": "Page not found",

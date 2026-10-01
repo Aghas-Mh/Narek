@@ -1,30 +1,56 @@
 {%- from "partials/icons.njk" import icon -%}
 {%- macro copyButton(value, label) -%}
-<button class="copy" type="button" data-copy="{{ value }}" data-done="{{ t.donate.copied }}" data-fail="{{ t.donate.copyFailed }}" aria-label="{{ t.donate.copy }}: {{ label }}">
+<button class="copy" type="button" data-copy="{{ value }}" data-done="{{ t.donate.copied }}" data-fail="{{ t.donate.copyFailed }}" aria-label="{{ t.donate.copy }}{{ t.sep }}{{ label }}">
   {{ icon("copy") }}<span data-label>{{ t.donate.copy }}</span>
 </button>
 {%- endmacro -%}
+{#- Compact list of cards / wallets right under the hero; the SWIFT details fold out on request. -#}
 <section class="section section--donate" id="donate" aria-labelledby="donate-title">
-  <div class="wrap">
+  <div class="wrap donate">
     <div class="donate__head">
+      <p class="eyebrow">{{ t.donate.eyebrow }}</p>
       <h2 id="donate-title">{{ t.donate.title }}</h2>
       <p class="lead">{{ t.donate.intro }}</p>
       <p class="recipient">
-        {{ t.donate.recipientLabel }}: <strong>{{ t.donate.recipientName }}</strong>
+        {{ t.donate.recipientLabel }}{{ t.sep }}<strong>{{ t.donate.recipientName }}</strong>
         <span class="recipient__relation">({% fill t.donate.recipientRelation %})</span>
       </p>
     </div>
 
-    <div class="pay-grid">
+    <ul class="pay-list">
       {% for m in campaign.payments %}
-      {%- set mt = t.donate.methods[m.id] -%}
-      <article class="pay pay--{{ m.type }}" id="pay-{{ m.id }}">
-        <header class="pay__head">
-          <h3>{{ mt.title }}</h3>
-          <span class="pay__currency">{{ m.currency }}</span>
-        </header>
+      {%- if m.type != "swift" %}
+      {%- set mt = t.donate.methods[m.id] %}
+      <li class="pay-row" id="pay-{{ m.id }}">
+        <span class="pay-row__currency">{{ m.currency }}</span>
+        <div class="pay-row__info">
+          <h3 class="pay-row__title">{{ mt.title }}</h3>
+          <p class="pay-row__meta">
+            {%- if m.bank is defined %}{% fill m.bank %}{% endif %}
+            {%- if m.bank is defined and mt.hint %} · {% endif %}
+            {{- mt.hint -}}
+          </p>
+        </div>
+        <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else t.donate.walletNumber }}">{{ (m.number | groupDigits) if m.type == "card" else m.number }}</span>
+        {{ copyButton(m.number, mt.title) }}
+      </li>
+      {%- endif %}
+      {% endfor %}
+    </ul>
 
-        {% if m.type == "swift" %}
+    {% for m in campaign.payments %}
+    {% if m.type == "swift" %}
+    {%- set mt = t.donate.methods[m.id] %}
+    <details class="pay-swift" id="pay-{{ m.id }}">
+      <summary>
+        <span class="pay-row__currency">{{ m.currency }}</span>
+        <span class="pay-swift__title">
+          <span class="pay-row__title">{{ mt.title }}</span>
+          <span class="pay-swift__toggle">{{ t.donate.swiftShow }}</span>
+        </span>
+      </summary>
+      <div class="pay-swift__body">
+        <p class="pay-swift__hint">{{ mt.hint }}</p>
         <dl class="pay__fields">
           {#- Fields appear in the order of t.donate.swiftFields; delete one from campaign.json to hide it -#}
           {% for key, label in t.donate.swiftFields %}
@@ -40,28 +66,11 @@
           {% endif %}
           {% endfor %}
         </dl>
-        {% else %}
-        <p class="pay__label">{{ t.donate.cardNumber if m.type == "card" else t.donate.walletNumber }}</p>
-        <div class="pay__number">
-          <span class="pay__digits">{{ (m.number | groupDigits) if m.type == "card" else m.number }}</span>
-          {{ copyButton(m.number, mt.title) }}
-        </div>
-        {% if m.bank is defined %}
-        <p class="pay__bank">{{ t.donate.bank }}: {% fill m.bank %}</p>
-        {% endif %}
-        {% endif %}
-
-        {% if mt.hint %}<p class="pay__hint">{{ mt.hint }}</p>{% endif %}
-      </article>
-      {% endfor %}
-
-      <div class="after-donate">
-        {{ icon("heart") }}
-        <div>
-          <h3>{{ t.donate.afterTitle }}</h3>
-          <p>{{ t.donate.after }}</p>
-        </div>
       </div>
-    </div>
+    </details>
+    {% endif %}
+    {% endfor %}
+
+    <p class="after-donate">{{ icon("heart") }} <span><strong>{{ t.donate.afterTitle }}{{ t.sep | trim }}</strong> {{ t.donate.after }}</span></p>
   </div>
 </section>

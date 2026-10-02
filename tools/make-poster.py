@@ -90,6 +90,7 @@ photo = photo.resize((W, PHOTO_H), Image.LANCZOS)
 goal = campaign["goal"]
 head1 = "Мой шанс — препарат Elevidys."
 head2a, head2b = "Его цена — ", f"{money_ru(goal['amount'])} рублей."
+head3a = "Номера Карт"
 f_head1 = fit(head1, "Bold", 70, inner, scratch)
 f_head2b = font(f_head1.size, "Bold")
 f_head2a = font(round(f_head1.size * 0.8), "SemiBold")
@@ -104,7 +105,7 @@ QR = qr_img.size[0]
 
 y_head = PHOTO_H - 110                                   # headline card overlaps the photo
 h_head = 48 + f_head1.size + 22 + f_head1.size + 44
-y_cards = y_head + h_head + 28
+y_cards = y_head + h_head + 86
 h_cards = ROWS_PAD * 2 + ROW_H * len(CARDS)
 y_idram = y_cards + h_cards + 24
 h_idram = 120
@@ -139,6 +140,9 @@ draw.text((x, y_head + 48), head1, font=f_head1, fill=INK, anchor="lt")
 y2 = y_head + 48 + f_head1.size + 22
 draw.text((x, y2 + f_head1.size), head2a, font=f_head2a, fill=MUTED, anchor="ls")
 draw.text((x + draw.textlength(head2a, font=f_head2a), y2 + f_head1.size), head2b, font=f_head2b, fill=INK, anchor="ls")
+
+f_head3a = font(64, "Bold")
+draw.text((x, y_cards - 20), head3a, font=f_head3a, fill=INK, anchor="ls")
 
 # Card numbers
 card(img, (M, y_cards, W - M, y_cards + h_cards))

@@ -33,7 +33,7 @@
   "payments": [
     { "id": "rub", "type": "card", "currency": "RUB", "number": "2200151392856287", "bank": "Alfa-Bank" },
     { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "bank": "ACBA Bank" },
-    { "id": "idram", "type": "wallet", "currency": "AMD", "number": "29437820" },
+    { "id": "idram", "type": "wallet", "currency": "AMD", "number": "294378420" },
     { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "bank": "ACBA Bank" },
     { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "bank": "ACBA Bank" },
     {

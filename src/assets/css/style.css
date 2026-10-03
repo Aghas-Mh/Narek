@@ -499,7 +499,7 @@ a:hover { color: var(--navy-600); }
 
 .copy {
   display: inline-flex; align-items: center; gap: 0.4em; flex: none;
-  min-height: 38px; padding: 0.35em 0.85em;
+  min-height: 38px; padding: 0.25em 0.25em;
   background: var(--surface); color: var(--navy-900);
   border: 1px solid var(--line); border-radius: 999px;
   font: inherit; font-size: 0.88rem; font-weight: 700; cursor: pointer;

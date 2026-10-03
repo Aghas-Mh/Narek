@@ -131,6 +131,7 @@
     "cardNumber": "Номер карты",
     "walletNumber": "Номер кошелька",
     "account": "Счет:",
+    "beneficiary": "Получатель:",
     "bank": "Банк",
     "copy": "Копировать",
     "copied": "Скопировано",

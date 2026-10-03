@@ -31,11 +31,11 @@
   },
 
   "payments": [
-    { "id": "rub", "type": "card", "currency": "RUR", "number": "2200151392856287", "accountNumber": "2200151392856287", "bank": "Alfa-Bank" },
-    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "accountNumber": "220421315080000", "bank": "ACBA Bank" },
-    { "id": "idram", "type": "wallet", "currency": "AMD", "number": "294378420" },
-    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "accountNumber": "220421310412001", "bank": "ACBA Bank" },
-    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "accountNumber": "220421310099002", "bank": "ACBA Bank" },
+    { "id": "rub", "type": "account", "currency": "RUR", "number": "2200151392856287", "bank": "Alfa-Bank", "beneficiary": "ANI POGHOSYAN" },
+    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "accountNumber": "220421315080000", "bank": "ACBA Bank", "beneficiary": "TATEVIK POGHOSYAN" },
+    { "id": "idram", "type": "wallet", "currency": "AMD", "number": "294378420", "beneficiary": "TATEVIK POGHOSYAN" },
+    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "accountNumber": "220421310412001", "bank": "ACBA Bank", "beneficiary": "TATEVIK POGHOSYAN" },
+    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "accountNumber": "220421310099002", "bank": "ACBA Bank", "beneficiary": "TATEVIK POGHOSYAN" },
     {
       "id": "swift",
       "type": "swift",

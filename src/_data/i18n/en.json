@@ -131,6 +131,7 @@
     "cardNumber": "Card number",
     "walletNumber": "Wallet number",
     "account": "Account:",
+    "beneficiary": "Account holder:",
     "bank": "Bank",
     "copy": "Copy",
     "copied": "Copied",

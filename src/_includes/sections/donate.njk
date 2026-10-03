@@ -32,7 +32,7 @@
           </p>
         </div>
         <div class="pay-row__account">
-          <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else t.donate.walletNumber }}">
+          <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else (t.donate.account | replace(':', '') | replace('՝', '') if m.type == 'account' else t.donate.walletNumber) }}">
             {%- if m.type == "card" %}<span class="pay-row__emoji" aria-hidden="true">💳</span> {% endif -%}
             {{ (m.number | groupDigits) if m.type == "card" else m.number }}
           </span>
@@ -44,6 +44,16 @@
             data-done="{{ t.donate.copied }}: {{ m.accountNumber }}"
             data-fail="{{ t.donate.copyFailed }}">
             {{ icon("copy") }}<span data-label>{{ t.donate.account }} {{ m.accountNumber }}</span>
+          </button>
+          {% endif %}
+
+          {#- Account holder, when it differs from the main recipient (e.g. the rouble account) -#}
+          {% if m.beneficiary is defined and not (m.beneficiary | isTodo) %}
+          <button class="pay-row__account_number" type="button"
+            data-copy="{{ m.beneficiary }}"
+            data-done="{{ t.donate.copied }}: {{ m.beneficiary }}"
+            data-fail="{{ t.donate.copyFailed }}">
+            {{ icon("copy") }}<span data-label>{{ t.donate.beneficiary }} {{ m.beneficiary }}</span>
           </button>
           {% endif %}
         </div>

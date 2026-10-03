@@ -1,8 +1,5 @@
-Mnacacy - TATEVIK POGHOSYAN
+Others - TATEVIK POGHOSYAN
 Alfa - ANI POGHOSYAN
-"beneficiary": "TODO: Tatevik's name exactly as ACBA writes it on her account (e.g. TATEVIK POGHOSYAN — check the spelling in the acba digital app)",
-"accountUsd": "TODO: 16-digit number of her ACBA US-dollar account (acba digital app → account → details; not the card number)",
-"accountEur": "TODO: 16-digit number of her ACBA euro account (acba digital app → account → details; not the card number)",
 "intermediaryUsd": "TODO: ask ACBA which USD correspondent to give (its website lists TBC Bank, TBCBGE22, and Bank of Georgia, BAGAGE22) — or delete this line",
 "faq": {
     "items": [

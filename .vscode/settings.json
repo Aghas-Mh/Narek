@@ -1,0 +1,9 @@
+{
+    "emmet.includeLanguages": {
+        "njk": "html"
+    },
+    "files.associations": {
+        "*.html": "nunjucks",
+        "src/_includes/**/*.html": "nunjucks"
+    }
+}

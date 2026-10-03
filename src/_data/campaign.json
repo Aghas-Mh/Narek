@@ -12,7 +12,7 @@
   },
 
   "raised": {
-    "amount": 913600,
+    "amount": 1154810,
     "updated": "2026-09-30"
   },
 
@@ -31,18 +31,18 @@
   },
 
   "payments": [
-    { "id": "rub", "type": "card", "currency": "RUR", "number": "2200151392856287", "bank": "Alfa-Bank" },
-    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "bank": "ACBA Bank" },
+    { "id": "rub", "type": "card", "currency": "RUR", "number": "2200151392856287", "accountNumber": "2200151392856287", "bank": "Alfa-Bank" },
+    { "id": "amd", "type": "card", "currency": "AMD", "number": "9051345203695885", "accountNumber": "220421315080000", "bank": "ACBA Bank" },
     { "id": "idram", "type": "wallet", "currency": "AMD", "number": "294378420" },
-    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "bank": "ACBA Bank" },
-    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "bank": "ACBA Bank" },
+    { "id": "usd", "type": "card", "currency": "USD", "number": "6263015300325732", "accountNumber": "220421310412001", "bank": "ACBA Bank" },
+    { "id": "eur", "type": "card", "currency": "EUR", "number": "6263015300433593", "accountNumber": "220421310099002", "bank": "ACBA Bank" },
     {
       "id": "swift",
       "type": "swift",
       "currency": "USD · EUR",
-      "beneficiary": "",
-      "accountUsd": "",
-      "accountEur": "",
+      "beneficiary": "TATEVIK POGHOSYAN",
+      "accountUsd": "220421310412001",
+      "accountEur": "220421310099002",
       "bank": "ACBA Bank OJSC",
       "swift": "AGCAAM22",
       "bankAddress": "82–84 Arami Street, Yerevan, Armenia",
@@ -73,6 +73,14 @@
     },
     {
       "src": "/assets/img/life/2.jpeg",
+      "alt": {
+        "en": "Narek standing with two teenagers, their hands on his shoulders",
+        "ru": "Нарек с двумя подростками, которые положили руки ему на плечи",
+        "hy": "Նարեկը երկու պատանիների հետ, որոնք ձեռքերը դրել են նրա ուսերին"
+      }
+    },
+    {
+      "src": "/assets/img/life/narek-600.jpg",
       "alt": {
         "en": "Narek standing with two teenagers, their hands on his shoulders",
         "ru": "Нарек с двумя подростками, которые положили руки ему на плечи",

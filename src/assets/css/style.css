@@ -328,7 +328,7 @@ a:hover { color: var(--navy-600); }
 .placeholder.media__video { aspect-ratio: auto; min-height: 150px; }
 .placeholder.media__photo { aspect-ratio: 4 / 3; }
 @media (min-width: 760px) {
-  .media { grid-template-columns: repeat(3, 1fr); }
+  .media { grid-template-columns: repeat(2, 1fr); }
   .media__photo:last-child:nth-child(even) { grid-column: auto; aspect-ratio: 4 / 5; }
 }
 

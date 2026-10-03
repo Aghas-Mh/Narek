@@ -460,7 +460,7 @@ a:hover { color: var(--navy-600); }
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas: "cur info info" "number number copy";
     align-items: start;
-    padding: 1rem;
+    padding: 0.8rem 0.6rem;
   }
   .pay-row__currency { height: 26px; min-width: 44px; font-size: 0.72rem; margin-top: 0.1rem; }
   .pay-row__account { align-items: flex-start; }

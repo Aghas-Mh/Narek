@@ -317,13 +317,14 @@ a:hover { color: var(--navy-600); }
 .quote blockquote { margin: 0; font-size: 1.2rem; line-height: 1.55; color: var(--navy-900); }
 .quote__by { margin: 1rem 0 0; font-weight: 700; color: var(--navy-800); }
 
+.media video { justify-self: center; }
 .media__title { margin-top: clamp(2.5rem, 6vw, 4rem); }
-.media { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
+.media { display: grid; gap: 1rem; grid-template-columns: repeat(1, 1fr); align-items: center; }
 .media__video { grid-column: 1 / -1; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; }
 .media__video iframe { width: 100%; height: 100%; border: 0; display: block; }
 .media__photo { margin: 0; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; }
 .media__photo img { width: 100%; height: 100%; object-fit: cover; }
-.media__photo:last-child:nth-child(even) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+/* .media__photo:last-child:nth-child(even) { grid-column: 1 / -1; aspect-ratio: 16 / 9; } */
 /* Empty slots stay compact until real photos / video are added */
 .placeholder.media__video { aspect-ratio: auto; min-height: 150px; }
 .placeholder.media__photo { aspect-ratio: 4 / 3; }
@@ -421,6 +422,7 @@ a:hover { color: var(--navy-600); }
   padding: 1rem 1.25rem;
 }
 .pay-row + .pay-row { border-top: 1px solid var(--line); }
+
 .pay-row__currency {
   grid-area: cur; display: grid; place-items: center;
   min-width: 52px; height: 34px; padding: 0 0.55rem; border-radius: 10px;
@@ -430,11 +432,28 @@ a:hover { color: var(--navy-600); }
 .pay-row__info { grid-area: info; min-width: 0; }
 .pay-row__title { margin: 0; font-size: 1.02rem; font-weight: 700; letter-spacing: 0; color: var(--navy-900); }
 .pay-row__meta { margin: 0.1rem 0 0; font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
+
+/* Card number, with the bank account number underneath (click to copy it) */
+.pay-row__account {
+  grid-area: number; min-width: 0;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem;
+}
 .pay-row__number {
-  grid-area: number;
   font-size: 1.15rem; font-weight: 750; letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums; color: var(--navy-900); white-space: nowrap;
 }
+.pay-row__emoji { font-size: 0.95em; letter-spacing: 0; }
+.pay-row__account_number {
+  display: inline-flex; align-items: center; gap: 0.35em;
+  padding: 0.15em 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap;
+  transition: color 0.15s;
+}
+.pay-row__account_number .icon { width: 1em; height: 1em; flex: none; }
+.pay-row__account_number:hover { color: var(--navy-800); text-decoration: underline; text-underline-offset: 0.2em; }
+.pay-row__account_number.is-done { color: var(--green); text-decoration: none; }
+
 .pay-row > .copy { grid-area: copy; }
 @media (max-width: 640px) {
   .pay-row {
@@ -444,7 +463,8 @@ a:hover { color: var(--navy-600); }
     padding: 1rem;
   }
   .pay-row__currency { height: 26px; min-width: 44px; font-size: 0.72rem; margin-top: 0.1rem; }
-  .pay-row__number, .pay-row > .copy { align-self: center; }
+  .pay-row__account { align-items: flex-start; }
+  .pay-row__account, .pay-row > .copy { align-self: center; }
   .pay-row__number { font-size: 1.08rem; }
 }
 

@@ -31,7 +31,22 @@
             {{- mt.hint -}}
           </p>
         </div>
-        <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else t.donate.walletNumber }}">{{ (m.number | groupDigits) if m.type == "card" else m.number }}</span>
+        <div class="pay-row__account">
+          <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else t.donate.walletNumber }}">
+            {%- if m.type == "card" %}<span class="pay-row__emoji" aria-hidden="true">💳</span> {% endif -%}
+            {{ (m.number | groupDigits) if m.type == "card" else m.number }}
+          </span>
+
+          {#- A real button (keyboard + screen readers); only the [data-label] text changes on copy, so the icon stays -#}
+          {% if m.accountNumber is defined %}
+          <button class="pay-row__account_number" type="button"
+            data-copy="{{ m.accountNumber }}"
+            data-done="{{ t.donate.copied }}: {{ m.accountNumber }}"
+            data-fail="{{ t.donate.copyFailed }}">
+            {{ icon("copy") }}<span data-label>{{ t.donate.account }} {{ m.accountNumber }}</span>
+          </button>
+          {% endif %}
+        </div>
         {{ copyButton(m.number, mt.title) }}
       </li>
       {%- endif %}
@@ -59,7 +74,7 @@
             <dt>{{ label }}</dt>
             <dd>
               {% if m[key] | isTodo %}{% fill m[key] %}
-              {% else %}<span class="pay__value">{{ m[key] }}</span>{% if key in ["beneficiary", "accountUsd", "accountEur", "swift", "purpose"] %} {{ copyButton(m[key], label) }}{% endif %}
+              {% else %}<span class="pay__value">{{ m[key] }}</span>{% if key in ["beneficiary", "accountAmd", "accountUsd", "accountEur", "swift", "purpose"] %} {{ copyButton(m[key], label) }}{% endif %}
               {% endif %}
             </dd>
           </div>

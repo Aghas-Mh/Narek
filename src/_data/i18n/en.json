@@ -130,12 +130,13 @@
     "recipientRelation": "Narek's mother",
     "cardNumber": "Card number",
     "walletNumber": "Wallet number",
+    "account": "Account:",
     "bank": "Bank",
     "copy": "Copy",
     "copied": "Copied",
     "copyFailed": "Copy failed — please select the number",
     "methods": {
-      "rub": { "title": "Russian rouble card", "hint": "For transfers from Russia." },
+      "rub": { "title": "Bank account in Russian rubles", "hint": "For transfers from Russia." },
       "amd": { "title": "Armenian dram card", "hint": "For transfers within Armenia." },
       "idram": { "title": "Idram wallet", "hint": "Send from the Idram app to this wallet number." },
       "usd": { "title": "US dollar card", "hint": "" },
@@ -144,6 +145,7 @@
     },
     "swiftFields": {
       "beneficiary": "Beneficiary (account holder)",
+      "accountAmd": "Account number for AM dram",
       "accountUsd": "Account number for US dollars",
       "accountEur": "Account number for euros",
       "bank": "Beneficiary's bank",

@@ -130,6 +130,7 @@
     "recipientRelation": "Նարեկի մայրը",
     "cardNumber": "Քարտի համար",
     "walletNumber": "Դրամապանակի համար",
+    "account": "Հաշիվ՝",
     "bank": "Բանկ",
     "copy": "Պատճենել",
     "copied": "Պատճենված է",
@@ -144,6 +145,7 @@
     },
     "swiftFields": {
       "beneficiary": "Ստացող (հաշվետեր)",
+      "accountAmd": "Դրամով հաշվեհամար",
       "accountUsd": "ԱՄՆ դոլարով հաշվեհամար",
       "accountEur": "Եվրոյով հաշվեհամար",
       "bank": "Ստացողի բանկ",

@@ -443,6 +443,7 @@ a:hover { color: var(--navy-600); }
   font-variant-numeric: tabular-nums; color: var(--navy-900); white-space: nowrap;
 }
 .pay-row__emoji { font-size: 0.95em; letter-spacing: 0; }
+.pay-row__number-label { font-size: 0.8em; font-weight: 600; letter-spacing: 0; color: var(--muted); }
 .pay-row__account_number {
   display: inline-flex; align-items: center; gap: 0.35em;
   padding: 0.15em 0; border: 0; background: none; cursor: pointer;

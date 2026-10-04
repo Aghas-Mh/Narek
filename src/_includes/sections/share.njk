@@ -1,4 +1,4 @@
-{%- from "partials/icons.njk" import icon -%}
+﻿{%- from "partials/icons.njk" import icon -%}
 {%- set shareText = t.share.message | interp(vars) -%}
 {%- set shareUrl = page.url | absUrl(site.url) -%}
 {%- set links = shareUrl | shareLinks(shareText) -%}
@@ -25,7 +25,7 @@
       </div>
 
       <a class="poster" href="/assets/img/poster.jpg" download="help-narek-poster.jpg">
-        <img src="/assets/img/poster-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="878" loading="lazy">
+        <img src="/assets/img/poster-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="1013" loading="lazy">
         <span class="poster__label">{{ icon("download") }} {{ t.share.poster }}</span>
       </a>
     </div>

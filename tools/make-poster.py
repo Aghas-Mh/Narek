@@ -90,12 +90,26 @@ photo = photo.resize((W, PHOTO_H), Image.LANCZOS)
 goal = campaign["goal"]
 head1 = "Мой шанс — препарат Elevidys."
 head2a, head2b = "Его цена — ", f"{money_ru(goal['amount'])} рублей."
-head3a = "Номера Карт"
+head3a = "Номера карт и счетов"
 f_head1 = fit(head1, "Bold", 70, inner, scratch)
 f_head2b = font(f_head1.size, "Bold")
 f_head2a = font(round(f_head1.size * 0.8), "SemiBold")
 
-ROW_H, ROWS_PAD = 108, 18
+ROW_H, ROWS_PAD, SUB_H = 108, 18, 40
+labels = ru["donate"]
+
+
+def sub_lines(p):
+    """Smaller lines under the number: bank account and account holder, as on the website."""
+    lines = []
+    if p.get("accountNumber"):
+        lines.append(f"{labels['account']} {p['accountNumber']}")
+    if p.get("beneficiary") and not str(p["beneficiary"]).upper().startswith("TODO"):
+        lines.append(f"{labels['beneficiary']} {p['beneficiary']}")
+    return lines
+
+
+row_heights = [ROW_H + SUB_H * len(sub_lines(payments[pid])) for pid in CARDS]
 QR_MODULE, QR_PAD = 10, 46
 qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=QR_MODULE, border=0)
 qr.add_data(args.url)
@@ -106,7 +120,7 @@ QR = qr_img.size[0]
 y_head = PHOTO_H - 110                                   # headline card overlaps the photo
 h_head = 48 + f_head1.size + 22 + f_head1.size + 44
 y_cards = y_head + h_head + 86
-h_cards = ROWS_PAD * 2 + ROW_H * len(CARDS)
+h_cards = ROWS_PAD * 2 + sum(row_heights)
 y_idram = y_cards + h_cards + 24
 h_idram = 120
 y_name = y_idram + h_idram + 34
@@ -148,13 +162,30 @@ draw.text((x, y_cards - 20), head3a, font=f_head3a, fill=INK, anchor="ls")
 card(img, (M, y_cards, W - M, y_cards + h_cards))
 draw = ImageDraw.Draw(img)
 f_num, f_cur, f_bank = font(64, "Bold"), font(56, "Bold"), font(26, "SemiBold")
+f_sub = font(32, "SemiBold")
+top = y_cards + ROWS_PAD
 for i, pid in enumerate(CARDS):
     p = payments[pid]
-    top = y_cards + ROWS_PAD + i * ROW_H
     mid = top + ROW_H // 2
     if i:
         draw.line((M + 30, top, W - M - 30, top), fill=LINE, width=2)
-    draw.text((M + 48, mid), group(p["number"]), font=f_num, fill=INK, anchor="lm")
+    number = group(p["number"]) if p.get("type") == "card" else p["number"]
+    nx = M + 48
+    acc_label = ""
+    if p.get("type") == "account":
+        # A bank account number, not a card number: say so in front of it
+        acc_label = labels["account"] + " "
+    else:
+        acc_label = "Карта: "
+
+    f_acc = font(40, "SemiBold")
+    draw.text((nx, mid + 4), acc_label, font=f_acc, fill=MUTED, anchor="lm")
+    nx += draw.textlength(acc_label, font=f_acc)
+
+    draw.text((nx, mid), number, font=fit(number, "Bold", 64, W - M - 230 - nx, draw), fill=INK, anchor="lm")
+    for j, line in enumerate(sub_lines(p)):
+        draw.text((M + 50, top + ROW_H - 14 + j * SUB_H), line, font=f_sub, fill=MUTED, anchor="lt")
+    top += row_heights[i]
     bank = BANK_NAMES_RU.get(p.get("bank", ""), p.get("bank", ""))
     draw.text((W - M - 48, mid - 14), p["currency"], font=f_cur, fill=INK, anchor="rm")
     if bank:

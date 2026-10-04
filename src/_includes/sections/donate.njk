@@ -34,6 +34,7 @@
         <div class="pay-row__account">
           <span class="pay-row__number" aria-label="{{ t.donate.cardNumber if m.type == 'card' else (t.donate.account | replace(':', '') | replace('՝', '') if m.type == 'account' else t.donate.walletNumber) }}">
             {%- if m.type == "card" %}<span class="pay-row__emoji" aria-hidden="true">💳</span> {% endif -%}
+            {%- if m.type == "account" %}<span class="pay-row__number-label">{{ t.donate.account }}</span> {% endif -%}
             {{ (m.number | groupDigits) if m.type == "card" else m.number }}
           </span>
 

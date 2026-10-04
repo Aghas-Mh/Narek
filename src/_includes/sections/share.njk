@@ -24,10 +24,15 @@
         </div>
       </div>
 
-      <a class="poster" href="/assets/img/poster.jpg" download="help-narek-poster.jpg">
-        <img src="/assets/img/poster-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="1013" loading="lazy">
-        <span class="poster__label">{{ icon("download") }} {{ t.share.poster }}</span>
-      </a>
+      {#- Built by tools/make-poster.py; height = thumbnail height printed by the script -#}
+      <div class="posters">
+        {% for p in [{ file: "poster", h: 1066 }, { file: "poster-2", h: 1146 }] %}
+        <a class="poster" href="/assets/img/{{ p.file }}.jpg" download="help-narek-{{ p.file }}.jpg">
+          <img src="/assets/img/{{ p.file }}-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="{{ p.h }}" loading="lazy">
+          <span class="poster__label">{{ icon("download") }} {{ t.share.poster }}{% if loop.length > 1 %} {{ loop.index }}{% endif %}</span>
+        </a>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="panel contact" id="contact">

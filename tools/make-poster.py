@@ -23,6 +23,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--photo", default="src/assets/img/life/1.jpeg")
 parser.add_argument("--url", default="https://aghas-mh.github.io/Narek/ru/", help="where the QR code points")
 parser.add_argument("--out", default="src/assets/img/poster.jpg")
+parser.add_argument("--photo-top", type=float, default=0.0,
+                    help="for tall photos: which part to keep, 0 = top, 0.5 = middle, 1 = bottom")
 args = parser.parse_args()
 
 campaign = json.loads((ROOT / "src/_data/campaign.json").read_text(encoding="utf-8"))
@@ -32,7 +34,7 @@ payments = {p["id"]: p for p in campaign["payments"]}
 # Same order as the original poster
 CARDS = ["usd", "amd", "eur", "rub"]
 BANK_NAMES_RU = {"Alfa-Bank": "Альфа-Банк"}
-SHOWN_URL = args.url.split("://", 1)[-1].rstrip("/").removesuffix("/ru")
+# SHOWN_URL = args.url.split("://", 1)[-1].rstrip("/").removesuffix("/ru")
 
 W, M = 1200, 40                      # canvas width, side margin
 BG = (244, 245, 249)
@@ -86,6 +88,12 @@ inner = W - 2 * M - 2 * 48
 photo = Image.open(ROOT / args.photo).convert("RGB")
 PHOTO_H = round(photo.height * W / photo.width)
 photo = photo.resize((W, PHOTO_H), Image.LANCZOS)
+# Portrait photos would take half the poster: keep the head and shoulders only
+MAX_PHOTO_H = 1000
+if PHOTO_H > MAX_PHOTO_H:
+    top = round((PHOTO_H - MAX_PHOTO_H) * args.photo_top)
+    photo = photo.crop((0, top, W, top + MAX_PHOTO_H))
+    PHOTO_H = MAX_PHOTO_H
 
 goal = campaign["goal"]
 head1 = "Мой шанс — препарат Elevidys."
@@ -123,7 +131,10 @@ y_cards = y_head + h_head + 86
 h_cards = ROWS_PAD * 2 + sum(row_heights)
 y_idram = y_cards + h_cards + 24
 h_idram = 120
-y_name = y_idram + h_idram + 34
+GOFUNDME = campaign.get("gofundme", "")
+y_gfm = y_idram + h_idram + 20
+h_gfm = 112 if GOFUNDME else 0
+y_name = y_gfm + h_gfm + (34 if GOFUNDME else 14)
 h_name = 66 + 12 + 34
 y_qr = y_name + h_name + 34
 h_qr = QR + 2 * QR_PAD
@@ -197,6 +208,19 @@ f_idram = font(70, "Bold")
 idram = f"Idram   {payments['idram']['number']}"
 draw.text((W // 2, y_idram + h_idram // 2), idram, font=f_idram, fill=WHITE, anchor="mm")
 
+# GoFundMe: online card payment from any country
+if GOFUNDME:
+    GREEN = (2, 169, 92)
+    card(img, (M, y_gfm, W - M, y_gfm + h_gfm), radius=28, border=GREEN)
+    draw = ImageDraw.Draw(img)
+    gx, gmid = M + 40, y_gfm + h_gfm // 2
+    f_g = font(52, "Bold")
+    draw.text((gx, gmid), "GoFundMe", font=f_g, fill=GREEN, anchor="lm")
+    gx += draw.textlength("GoFundMe", font=f_g) + 30
+    shown = GOFUNDME.split("://", 1)[-1].removeprefix("www.")
+    draw.text((gx, gmid - 18), "онлайн-оплата картой из любой страны", font=font(28, "SemiLight"), fill=MUTED, anchor="lm")
+    draw.text((gx, gmid + 20), shown, font=fit(shown, "SemiBold SemiCondensed", 38, W - M - 36 - gx, draw), fill=INK, anchor="lm")
+
 # Recipient
 donate = ru["donate"]
 draw.text((W // 2, y_name), donate["recipientName"], font=font(66, "Bold"), fill=INK, anchor="mt")
@@ -219,9 +243,9 @@ for line in body:
     draw.text((tx, y), line, font=f_b, fill=MUTED)
     y += 46
 y += 26
-uw = draw.textlength(SHOWN_URL, font=f_u)
-draw.rounded_rectangle((tx, y, tx + uw + 56, y + 72), 36, fill=NAVY)
-draw.text((tx + 28, y + 36), SHOWN_URL, font=f_u, fill=WHITE, anchor="lm")
+# uw = draw.textlength(SHOWN_URL, font=f_u)
+# draw.rounded_rectangle((tx, y, tx + uw + 56, y + 72), 36, fill=NAVY)
+# draw.text((tx + 28, y + 36), SHOWN_URL, font=f_u, fill=WHITE, anchor="lm")
 
 out = ROOT / args.out
 img.save(out, quality=92, optimize=True)

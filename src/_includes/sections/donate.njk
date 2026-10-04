@@ -17,6 +17,17 @@
       </p>
     </div>
 
+    {#- Online card payment, the easiest option for donors abroad -#}
+    {% if campaign.gofundme and not (campaign.gofundme | isTodo) %}
+    <div class="pay-online">
+      <div class="pay-online__text">
+        <h3 class="pay-row__title">{{ t.donate.online.title }}</h3>
+        <p class="pay-row__meta">{{ t.donate.online.text }}</p>
+      </div>
+      <a class="btn btn--gofundme" href="{{ campaign.gofundme }}" target="_blank" rel="noopener">{{ icon("heart") }} {{ t.donate.online.button }}</a>
+    </div>
+    {% endif %}
+
     <ul class="pay-list">
       {% for m in campaign.payments %}
       {%- if m.type != "swift" %}

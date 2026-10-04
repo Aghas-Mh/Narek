@@ -409,6 +409,17 @@ a:hover { color: var(--navy-600); }
 }
 .recipient strong { color: var(--navy-900); }
 
+/* GoFundMe: online card payment, above the bank details */
+.pay-online {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem;
+  margin-bottom: 1rem; padding: 1.1rem 1.25rem;
+  background: #e8f6ee; border: 1px solid #b9e3cb; border-radius: var(--radius-lg);
+}
+.pay-online__text { min-width: 0; flex: 1 1 260px; }
+.btn--gofundme { background: #02a95c; color: #fff; box-shadow: 0 6px 16px -6px rgb(2 169 92 / 0.6); }
+.btn--gofundme:hover { background: #018f4e; color: #fff; }
+@media (max-width: 640px) { .btn--gofundme { width: 100%; } }
+
 /* One row per card / wallet: currency · name + bank · number · Copy */
 .pay-list {
   list-style: none; margin: 0; padding: 0;
@@ -616,6 +627,7 @@ a.doc__thumb:hover img { transform: scale(1.04); }
   text-decoration: none; box-shadow: var(--shadow-sm);
 }
 .poster img { width: 72px; border-radius: 8px; }
+.posters { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .poster__label { display: inline-flex; align-items: center; gap: 0.4em; font-weight: 700; color: var(--navy-900); }
 .poster:hover { border-color: var(--navy-600); }
 

@@ -123,8 +123,13 @@
   "donate": {
     "eyebrow": "Donate to Narek",
     "title": "How to donate",
-    "intro": "Every contribution matters. Choose the method that works best for you: a bank card, Idram or an international bank transfer.",
+    "intro": "Every contribution matters. Choose the method that works best for you: GoFundMe, a bank card, Idram or an international bank transfer.",
     "swiftShow": "Show bank details",
+    "online": {
+      "title": "Donate online on GoFundMe",
+      "text": "Pay by card from any country in a couple of clicks.",
+      "button": "Donate on GoFundMe"
+    },
     "recipientLabel": "Recipient",
     "recipientName": "Tatevik Poghosyan",
     "recipientRelation": "Narek's mother",

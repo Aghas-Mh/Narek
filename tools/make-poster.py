@@ -118,12 +118,19 @@ def sub_lines(p):
 
 
 row_heights = [ROW_H + SUB_H * len(sub_lines(payments[pid])) for pid in CARDS]
-QR_MODULE, QR_PAD = 10, 46
-qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=QR_MODULE, border=0)
-qr.add_data(args.url)
-qr.make(fit=True)
-qr_img = qr.make_image(fill_color=INK, back_color=WHITE).convert("RGB")
-QR = qr_img.size[0]
+def qr_image(url, module):
+    q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=module, border=0)
+    q.add_data(url)
+    q.make(fit=True)
+    return q.make_image(fill_color=INK, back_color=WHITE).convert("RGB")
+
+
+GOFUNDME = campaign.get("gofundme", "")
+GREEN = (2, 169, 92)
+# Two QR codes side by side (GoFundMe + website), as on make-poster-alfa.py; just the site if there is no GoFundMe
+qr_site = qr_image(args.url, 8)
+qr_gfm = qr_image(GOFUNDME, 7) if GOFUNDME else None
+QR_BOX = max(q.size[0] for q in (qr_site, qr_gfm) if q)
 
 y_head = PHOTO_H - 110                                   # headline card overlaps the photo
 h_head = 48 + f_head1.size + 22 + f_head1.size + 44
@@ -131,13 +138,12 @@ y_cards = y_head + h_head + 86
 h_cards = ROWS_PAD * 2 + sum(row_heights)
 y_idram = y_cards + h_cards + 24
 h_idram = 120
-GOFUNDME = campaign.get("gofundme", "")
 y_gfm = y_idram + h_idram + 20
 h_gfm = 112 if GOFUNDME else 0
 y_name = y_gfm + h_gfm + (34 if GOFUNDME else 14)
 h_name = 66 + 12 + 34
 y_qr = y_name + h_name + 34
-h_qr = QR + 2 * QR_PAD
+h_qr = QR_BOX + 175
 H = y_qr + h_qr + 48
 
 # ---------- draw ----------
@@ -210,7 +216,6 @@ draw.text((W // 2, y_idram + h_idram // 2), idram, font=f_idram, fill=WHITE, anc
 
 # GoFundMe: online card payment from any country
 if GOFUNDME:
-    GREEN = (2, 169, 92)
     card(img, (M, y_gfm, W - M, y_gfm + h_gfm), radius=28, border=GREEN)
     draw = ImageDraw.Draw(img)
     gx, gmid = M + 40, y_gfm + h_gfm // 2
@@ -226,29 +231,23 @@ donate = ru["donate"]
 draw.text((W // 2, y_name), donate["recipientName"], font=font(66, "Bold"), fill=INK, anchor="mt")
 draw.text((W // 2, y_name + 66 + 12), f"получатель, {donate['recipientRelation']}", font=font(32, "SemiLight"), fill=MUTED, anchor="mt")
 
-# QR panel
+# QR panel: GoFundMe and the website, each with a caption
 card(img, (M, y_qr, W - M, y_qr + h_qr))
 draw = ImageDraw.Draw(img)
-qx, qy = M + QR_PAD, y_qr + QR_PAD
-img.paste(qr_img, (qx, qy))
-tx = qx + QR + 52
-tw = W - M - QR_PAD - tx
-f_t, f_b, f_u = font(62, "Bold SemiCondensed"), font(36, "SemiCondensed"), font(40, "Bold SemiCondensed")
-body = ["История Нарека, медицинские", "документы и\u00a0все способы помощи"]
-block = 62 + 18 + 46 * len(body) + 26 + 72
-y = y_qr + (h_qr - block) // 2
-draw.text((tx, y), "Отсканируйте QR-код", font=f_t, fill=INK)
-y += 62 + 18
-for line in body:
-    draw.text((tx, y), line, font=f_b, fill=MUTED)
-    y += 46
-y += 26
-# uw = draw.textlength(SHOWN_URL, font=f_u)
-# draw.rounded_rectangle((tx, y, tx + uw + 56, y + 72), 36, fill=NAVY)
-# draw.text((tx + 28, y + 36), SHOWN_URL, font=f_u, fill=WHITE, anchor="lm")
+codes = [(qr_gfm, "GoFundMe", "оплата картой онлайн", GREEN)] if qr_gfm else []
+codes.append((qr_site, "Сайт Нарека", "история, документы, реквизиты", NAVY))
+col_w = (W - 2 * M) // len(codes)
+for i, (q, title, sub, color) in enumerate(codes):
+    cx = M + col_w * i + col_w // 2
+    qy = y_qr + 40 + (QR_BOX - q.size[1]) // 2
+    img.paste(q, (cx - q.size[0] // 2, qy))
+    draw.text((cx, y_qr + 40 + QR_BOX + 30), title, font=font(42, "Bold"), fill=color, anchor="mt")
+    draw.text((cx, y_qr + 40 + QR_BOX + 80), sub, font=font(28, "SemiLight"), fill=MUTED, anchor="mt")
+if len(codes) == 2:
+    draw.line((W // 2, y_qr + 40, W // 2, y_qr + h_qr - 40), fill=(226, 230, 238), width=2)
 
 out = ROOT / args.out
 img.save(out, quality=92, optimize=True)
 thumb_h = round(480 * H / W)
 img.resize((480, thumb_h), Image.LANCZOS).save(out.with_name(out.stem + "-thumb.jpg"), quality=85, optimize=True)
-print(f"Saved {out} ({W}x{H}) and thumbnail 480x{thumb_h}; QR -> {args.url}")
+print(f"Saved {out} ({W}x{H}) and thumbnail 480x{thumb_h}; QR -> {args.url}" + (f" + {GOFUNDME}" if GOFUNDME else ""))

@@ -26,7 +26,7 @@
 
       {#- Built by tools/make-poster.py; height = thumbnail height printed by the script -#}
       <div class="posters">
-        {% for p in [{ file: "poster", h: 1066 }, { file: "poster-2", h: 1146 }] %}
+        {% for p in [{ file: "poster", h: 1076 }, { file: "poster-2", h: 1156 }] %}
         <a class="poster" href="/assets/img/{{ p.file }}.jpg" download="help-narek-{{ p.file }}.jpg">
           <img src="/assets/img/{{ p.file }}-thumb.jpg" alt="{{ t.share.posterAlt }}" width="480" height="{{ p.h }}" loading="lazy">
           <span class="poster__label">{{ icon("download") }} {{ t.share.poster }}{% if loop.length > 1 %} {{ loop.index }}{% endif %}</span>

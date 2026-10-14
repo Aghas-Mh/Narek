@@ -12,12 +12,12 @@
   },
 
   "raised": {
-    "amount": 1154810,
-    "updated": "2026-09-30"
+    "amount": 3239145,
+    "updated": "2026-10-14"
   },
 
   "treatment": {
-    "targetDate": "2026-10-30"
+    "targetDate": "2027-03-01"
   },
 
   "costs": {
@@ -29,6 +29,8 @@
       { "id": "followup", "amount": "TODO: amount in RUB" }
     ]
   },
+
+  "purposeRu": "На лечение Нарека",
 
   "gofundme": "https://www.gofundme.com/f/support-nareks-dmd-treatment",
 

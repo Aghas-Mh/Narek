@@ -28,6 +28,7 @@ args = parser.parse_args()
 campaign = json.loads((ROOT / "src/_data/campaign.json").read_text(encoding="utf-8"))
 rub = next(p for p in campaign["payments"] if p["id"] == "rub")
 GOFUNDME = campaign["gofundme"]
+PURPOSE = f"Назначение платежа: {campaign.get('purposeRu', 'На лечение Нарека')}"
 
 W, M = 1200, 40
 BG, INK, NAVY, MUTED = (244, 245, 249), (3, 22, 62), (16, 43, 86), (78, 90, 118)
@@ -77,7 +78,7 @@ if PHOTO_H > 1000:
 y_head = PHOTO_H - 110
 h_head = 48 + 70 + 22 + 70 + 52   # top pad + two lines + bottom pad
 y_bank = y_head + h_head + 30
-h_bank = 470
+h_bank = 540
 y_gfm = y_bank + h_bank + 28
 h_gfm = 150
 qr_site, qr_gfm = qr_image(args.site, 8), qr_image(GOFUNDME, 7)
@@ -127,6 +128,7 @@ draw.text((x, y_bank + 255), f"Получатель: {rub['beneficiary']}", font
 draw.line((M + 30, y_bank + 315, W - M - 30, y_bank + 315), fill=(232, 222, 222), width=2)
 draw.text((x, y_bank + 362), "Перевод по номеру телефона и связь с получателем:", font=font(32, "SemiLight"), fill=MUTED, anchor="lm")
 draw.text((x, y_bank + 418), rub["phone"], font=font(66, "Bold"), fill=RED, anchor="lm")
+draw.text((x, y_bank + 494), PURPOSE, font=fit(PURPOSE, "SemiBold", 38, W - 2 * x, draw), fill=INK, anchor="lm")
 
 # GoFundMe
 card(img, (M, y_gfm, W - M, y_gfm + h_gfm), radius=28, border=GREEN)

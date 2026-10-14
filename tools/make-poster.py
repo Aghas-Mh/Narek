@@ -135,7 +135,9 @@ QR_BOX = max(q.size[0] for q in (qr_site, qr_gfm) if q)
 y_head = PHOTO_H - 110                                   # headline card overlaps the photo
 h_head = 48 + f_head1.size + 22 + f_head1.size + 44
 y_cards = y_head + h_head + 86
-h_cards = ROWS_PAD * 2 + sum(row_heights)
+PURPOSE = f"Назначение платежа: {campaign.get('purposeRu', 'На лечение Нарека')}"
+PURPOSE_H = 64
+h_cards = ROWS_PAD * 2 + sum(row_heights) + PURPOSE_H
 y_idram = y_cards + h_cards + 24
 h_idram = 120
 y_gfm = y_idram + h_idram + 20
@@ -207,6 +209,11 @@ for i, pid in enumerate(CARDS):
     draw.text((W - M - 48, mid - 14), p["currency"], font=f_cur, fill=INK, anchor="rm")
     if bank:
         draw.text((W - M - 48, mid + 30), bank, font=f_bank, fill=MUTED, anchor="rm")
+
+# Payment purpose, under the last card
+py = y_cards + h_cards - PURPOSE_H
+draw.line((M + 30, py, W - M - 30, py), fill=LINE, width=2)
+draw.text((W // 2, py + PURPOSE_H // 2 - 4), PURPOSE, font=fit(PURPOSE, "SemiBold", 38, W - 2 * M - 80, draw), fill=INK, anchor="mm")
 
 # Idram bar
 draw.rounded_rectangle((M, y_idram, W - M, y_idram + h_idram), 28, fill=NAVY)

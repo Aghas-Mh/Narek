@@ -7,6 +7,13 @@
     "pdf": "/assets/docs/medcare-letter.pdf"
   },
   {
+    "id": "estimate",
+    "date": "2026-08-17",
+    "image": "/assets/docs/medcare-estimate.jpg",
+    "thumb": "/assets/docs/medcare-estimate-thumb.jpg",
+    "pdf": "/assets/docs/medcare-estimate.pdf"
+  },
+  {
     "id": "genetics",
     "date": "2024-04-15",
     "image": "/assets/docs/genetics.jpg",

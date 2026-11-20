@@ -8,19 +8,21 @@
         {% for item in campaign.costs.items %}
         <tr>
           <th scope="row">{{ t.costs.items[item.id] }}</th>
-          <td>{% if item.amount | isTodo %}{% fill item.amount %}{% else %}{{ item.amount | money(campaign.goal.currency, lang.locale) }}{% endif %}</td>
+          <td>{% if item.amount | isTodo %}{% fill item.amount %}{% else %}{{ item.amount | money(item.currency or campaign.goal.currency, lang.locale) }}{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
       <tfoot>
         <tr>
           <th scope="row">{{ t.costs.total }}</th>
-          {#- Same currency as the items above (the goal currency), not the page's display currency -#}
+          {#- The goal currency, not the page's display currency; items may be in the hospital's currency (rateNote explains) -#}
           <td>{{ campaign.goal.amount | money(campaign.goal.currency, lang.locale) }}</td>
         </tr>
       </tfoot>
     </table>
 
-    <p class="small muted">{{ t.costs.sourceLabel }}{{ t.sep }}{% fill campaign.costs.source %}</p>
+    {% if t.costs.note %}<p>{{ t.costs.note }}</p>{% endif %}
+    {% if t.costs.rateNote %}<p class="note">{{ t.costs.rateNote }}</p>{% endif %}
+    <p class="small muted">{{ t.costs.sourceLabel }}{{ t.sep }}{% if campaign.costs.source | isTodo %}{% fill campaign.costs.source %}{% else %}<a href="#doc-estimate">{{ campaign.costs.source }}</a>{% endif %}</p>
   </div>
 </section>

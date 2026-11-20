@@ -37,7 +37,8 @@
     "ofGoal": "of {goal}",
     "updated": "Updated {date}",
     "received": "{amount} received in total",
-    "about": "about"
+    "about": "about",
+    "rateNote": "The amount may change with exchange rates: the hospital's price is in UAE dirhams."
   },
 
   "factsTitle": "Key facts",
@@ -111,13 +112,12 @@
     "title": "Where the money goes",
     "intro": "The total cost of Narek's treatment is {goal}.",
     "items": {
-      "medicine": "Elevidys medicine (one dose)",
-      "hospital": "Hospital stay, tests and infusion",
-      "travel": "Travel and accommodation in Dubai",
-      "followup": "Follow-up checks after treatment"
+      "package": "Treatment package at Medcare: Elevidys, paediatric intensive-care stay, blood tests, specialist consultations and physiotherapy"
     },
-    "total": "Total",
-    "sourceLabel": "Source"
+    "total": "Total to raise (at the estimate-date rate)",
+    "sourceLabel": "Source",
+    "note": "The hospital provides accommodation for up to 3 months free of charge. Flights and visas are not included.",
+    "rateNote": "The hospital's price is in UAE dirhams (AED). The amounts in roubles and dollars were calculated at the exchange rate on the date of the estimate (17 August 2026), so they may change as exchange rates move."
   },
 
   "donate": {
@@ -176,6 +176,12 @@
         "title": "Letter of acceptance",
         "source": "Medcare Royal Speciality Hospital, Dubai",
         "summary": "Confirms the diagnosis, a negative AAVrh74 antibody test, and that Narek is clinically suitable for Elevidys gene therapy.",
+        "language": "In English"
+      },
+      "estimate": {
+        "title": "Treatment cost estimate",
+        "source": "Medcare Royal Speciality Hospital, Dubai",
+        "summary": "Package price for Elevidys treatment: AED 10,650,000 (about US$2,900,000). It covers the medicine, the intensive-care stay, blood tests, specialist consultations and physiotherapy. The hospital's bank details are hidden: please donate only through the details on this page.",
         "language": "In English"
       },
       "genetics": {

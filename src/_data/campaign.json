@@ -21,12 +21,9 @@
   },
 
   "costs": {
-    "source": "TODO: which document these amounts come from, e.g. Medcare cost estimate no. …, dated …",
+    "source": "Medcare Royal Speciality Hospital cost estimate DMD-345-NAREKGRIGORYAN-17082026-1, 17.08.2026",
     "items": [
-      { "id": "medicine", "amount": "TODO: amount in RUB" },
-      { "id": "hospital", "amount": "TODO: amount in RUB" },
-      { "id": "travel", "amount": "TODO: amount in RUB" },
-      { "id": "followup", "amount": "TODO: amount in RUB" }
+      { "id": "package", "amount": 10650000, "currency": "AED" }
     ]
   },
 

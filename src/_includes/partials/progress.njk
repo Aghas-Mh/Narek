@@ -25,4 +25,5 @@
     {% if raised.updated | isTodo %}{% fill raised.updated %}{% else %}{% set updatedOn = raised.updated | formatDate(lang.locale) %}{{ t.progress.updated | interp({ date: updatedOn }) }}{% endif %}
     {%- if vars.converted and vars.raisedOriginal %} · {{ t.progress.received | interp({ amount: vars.raisedOriginal }) }}{% endif %}
   </p>
+  {% if t.progress.rateNote %}<p class="progress-card__note">{{ t.progress.rateNote }}</p>{% endif %}
 </div>

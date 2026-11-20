@@ -264,6 +264,7 @@ a:hover { color: var(--navy-600); }
 .progress-card__meta { margin-top: 0.7rem !important; color: var(--muted); font-size: 0.98rem; }
 .progress-card__meta strong { color: var(--navy-900); }
 .progress-card__updated { margin-top: 0.3rem !important; font-size: 0.85rem; color: var(--muted); }
+.progress-card__note { margin-top: 0.5rem !important; font-size: 0.8rem; color: var(--muted); font-style: italic; }
 
 /* ---------- Key facts ---------- */
 
@@ -389,6 +390,9 @@ a:hover { color: var(--navy-600); }
 .costs th { font-weight: 600; }
 .costs td { text-align: right; font-variant-numeric: tabular-nums; }
 .costs tfoot th, .costs tfoot td { border-bottom: 0; background: var(--navy-900); color: #fff; font-weight: 800; font-size: 1.1rem; }
+.costs td { white-space: nowrap; }
+/* Exchange-rate notice under the costs table */
+.note { padding: 0.85rem 1.1rem; border-left: 4px solid var(--amber); background: var(--amber-100); color: var(--amber-ink); border-radius: 0 8px 8px 0; }
 
 /* ---------- Donate ---------- */
 
